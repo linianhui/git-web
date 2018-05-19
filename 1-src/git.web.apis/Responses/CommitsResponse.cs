@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Git.Web.Apis.Extensions;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,14 @@ namespace Git.Web.Apis.Responses
         {
             return new CommitsResponse
             {
-                commits = commits.Select(CommitResponse.From).ToList()
+                commits = commits.ToCommitResponses()
             };
         }
 
-        public override CommitsResponse AddLinks(IUrlHelper urlHelper)
+        public override CommitsResponse AddLinks(IUrlHelper url)
         {
-            AddSelf(Routes.Commits.Links.GetAll(urlHelper));
-            commits.ForEach(_ => _.AddLinks(urlHelper));
+            AddSelf(Routes.Commits.Links.GetAll(url));
+            commits.ForEach(_ => _.AddLinks(url));
             return this;
         }
     }

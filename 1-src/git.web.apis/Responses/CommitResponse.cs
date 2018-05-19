@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Git.Web.Apis.Extensions;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +10,7 @@ namespace Git.Web.Apis.Responses
     {
         private CommitResponse() { }
 
-        public string sha { get; private set; }
+        public string id { get; private set; }
 
         public UserResponse author { get; private set; }
 
@@ -18,21 +20,33 @@ namespace Git.Web.Apis.Responses
 
         public string encoding { get; private set; }
 
+        public List<IdResponse> parents { get; private set; }
+
+        public IdResponse tree { get; private set; }
+
         public static CommitResponse From(Commit commit)
         {
             return new CommitResponse
             {
-                sha = commit.Sha,
+                id = commit.Sha,
                 encoding = commit.Encoding,
                 author = commit.Author.ToResponse(),
                 committer = commit.Committer.ToResponse(),
-                message = commit.Message
+                message = commit.Message,
+                parents = commit.Parents.ToIdResponses(),
+                tree = commit.Tree.ToIdResponse()
             };
         }
 
-        public override CommitResponse AddLinks(IUrlHelper urlHelper)
+        public static List<CommitResponse> From(IEnumerable<Commit> commits)
         {
-            AddSelf(Routes.Commits.Links.Get(urlHelper, sha));
+            return commits.Select(From).ToList();
+        }
+
+        public override CommitResponse AddLinks(IUrlHelper url)
+        {
+            AddSelf(Routes.Commits.Links.Get(url, id));
+            parents.ForEach(_ => _.url = Routes.Commits.Links.Get(url, _.id));
             return this;
         }
     }

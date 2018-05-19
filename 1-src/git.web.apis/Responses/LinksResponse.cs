@@ -17,6 +17,6 @@ namespace Git.Web.Apis.Responses
             AddLink(LinkResponse.From("self", herf));
         }
 
-        public abstract TResponse AddLinks(IUrlHelper urlHelper) ;
+        public abstract TResponse AddLinks(IUrlHelper url) ;
     }
 }

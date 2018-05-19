@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
 using LibGit2Sharp;
-using IGitRepository = LibGit2Sharp.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -10,27 +8,27 @@ namespace Git.Web.Apis
     [Route("commits")]
     public class CommitsController : Controller
     {
-        private readonly IGitRepository _gitRepository;
+        private readonly IRepository _repository;
 
-        public CommitsController(IGitRepository gitRepository)
+        public CommitsController(IRepository repository)
         {
-            _gitRepository = gitRepository;
+            _repository = repository;
         }
 
         [HttpGet(Name = Routes.Commits.GET_ALL)]
         public CommitsResponse GetCommits()
         {
-            return _gitRepository.Commits
-                .ToResponse()
+            return _repository.Commits
+                .ToCommitsResponse()
                 .AddLinks(Url);
         }
 
         [HttpGet("{commitId}", Name = Routes.Commits.GET)]
         public CommitResponse GetCommit(string commitId)
         {
-            return _gitRepository
+            return _repository
                 .Lookup<Commit>(commitId)
-                .ToResponse()
+                .ToCommitResponse()
                 .AddLinks(Url);
         }
     }
