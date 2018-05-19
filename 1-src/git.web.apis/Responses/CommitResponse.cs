@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,8 +46,9 @@ namespace Git.Web.Apis.Responses
 
         public override CommitResponse AddLinks(IUrlHelper url)
         {
-            AddSelf(Routes.Commits.Links.Get(url, id));
-            parents.ForEach(_ => _.url = Routes.Commits.Links.Get(url, _.id));
+            AddSelf(Commits.Links.Get(url, id));
+            parents.ForEach(_ => _.url = Commits.Links.Get(url, _.id));
+            tree.url = Trees.Links.Get(url, tree.id);
             return this;
         }
     }
