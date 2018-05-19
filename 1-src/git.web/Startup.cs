@@ -10,6 +10,7 @@ namespace Git.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApiDocs();
             services.AddScoped(typeof(IRepository), _ => new Repository(@"d:\.github\.lnh\code"));
             services.AddMvc().AddJsonOptions(_ =>
             {
@@ -20,6 +21,7 @@ namespace Git.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
+            app.UseApiDocs(".docs");
             app.UseMvc();
         }
     }

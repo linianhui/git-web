@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\git.web.apis\git.web.apis.csproj" />
+    <ProjectReference Include="..\git.web.docs\git.web.docs.csproj" />
   </ItemGroup>
 
 </Project>
