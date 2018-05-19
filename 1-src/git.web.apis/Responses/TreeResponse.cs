@@ -13,9 +13,9 @@ namespace Git.Web.Apis.Responses
 
         public string id { get; private set; }
 
-        public int count { get; set; }
+        public int count { get; private set; }
 
-        public List<TreeEntryResponse> entrys { get; set; }
+        public List<TreeEntryResponse> entrys { get; private set; }
 
         public static TreeResponse From(Tree tree)
         {
