@@ -1,0 +1,5 @@
+[*.cs]
+## JSON属性: all_lower
+dotnet_naming_symbols.pascal_case_symbol.applicable_kinds = property
+dotnet_naming_style.pascal_case_style.capitalization      = all_lower
+dotnet_naming_style.pascal_case_style.word_separator      = _

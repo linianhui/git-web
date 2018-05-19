@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -11,7 +10,7 @@ namespace Git.Web.Apis
         {
             return new
             {
-                home_url = base.Request.GetDisplayUrl()
+                commits_url = Routes.Commits.Links.GetAll(Url)
             };
         }
     }
