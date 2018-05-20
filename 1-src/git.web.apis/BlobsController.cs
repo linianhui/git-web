@@ -1,6 +1,5 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
-using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +15,8 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{blobId}", Name = Blobs.GET)]
-        public BlobResponse GetTree(string blobId)
+        [HttpGet("{blob_id}", Name = Routes.Blobs.GET)]
+        public BlobResponse GetTree([FromRoute(Name = "blob_id")]string blobId)
         {
             return _repository
                 .Lookup<Blob>(blobId)

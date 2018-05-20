@@ -3,9 +3,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public sealed class UserResponse
+    public sealed class SignatureResponse
     {
-        private UserResponse() { }
+        private SignatureResponse() { }
 
         public string name { get; private set; }
 
@@ -13,9 +13,9 @@ namespace Git.Web.Apis.Responses
 
         public DateTimeOffset when { get; private set; }
 
-        public static UserResponse From(Signature signature)
+        public static SignatureResponse From(Signature signature)
         {
-            return new UserResponse
+            return new SignatureResponse
             {
                 name = signature.Name,
                 email = signature.Email,

@@ -5,9 +5,9 @@ namespace Git.Web.Apis.Extensions
 {
     public static class SignatureExtensions
     {
-        public static UserResponse ToResponse(this Signature @this)
+        public static SignatureResponse ToSignatureResponse(this Signature @this)
         {
-            return UserResponse.From(@this);
+            return SignatureResponse.From(@this);
         }
     }
 }

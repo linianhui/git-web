@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
-using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +12,11 @@ namespace Git.Web.Apis.Responses
 
         public string id { get; private set; }
 
-        public UserResponse author { get; private set; }
+        public SignatureResponse author { get; private set; }
 
         public string message { get; private set; }
 
-        public UserResponse committer { get; private set; }
+        public SignatureResponse committer { get; private set; }
 
         public string encoding { get; private set; }
 
@@ -31,8 +30,8 @@ namespace Git.Web.Apis.Responses
             {
                 id = commit.Sha,
                 encoding = commit.Encoding,
-                author = commit.Author.ToResponse(),
-                committer = commit.Committer.ToResponse(),
+                author = commit.Author.ToSignatureResponse(),
+                committer = commit.Committer.ToSignatureResponse(),
                 message = commit.Message,
                 parents = commit.Parents.ToIdResponses(),
                 tree = commit.Tree.ToIdResponse()
@@ -46,9 +45,9 @@ namespace Git.Web.Apis.Responses
 
         public override CommitResponse AddLinks(IUrlHelper url)
         {
-            AddSelf(Commits.Links.Get(url, id));
-            parents.ForEach(_ => _.url = Commits.Links.Get(url, _.id));
-            tree.url = Trees.Links.Get(url, tree.id);
+            AddSelf(Routes.Commits.Links.Get(url, id));
+            parents.ForEach(_ => _.url = Routes.Commits.Links.Get(url, _.id));
+            tree.url = Routes.Trees.Links.Get(url, tree.id);
             return this;
         }
     }

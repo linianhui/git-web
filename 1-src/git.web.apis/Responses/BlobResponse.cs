@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +39,7 @@ namespace Git.Web.Apis.Responses
 
         public override BlobResponse AddLinks(IUrlHelper url)
         {
-            AddSelf(Blobs.Links.Get(url, id));
+            AddSelf(Routes.Blobs.Links.Get(url, id));
             return this;
         }
     }

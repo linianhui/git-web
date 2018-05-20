@@ -1,6 +1,5 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
-using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +15,8 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{treeId}", Name = Trees.GET)]
-        public TreeResponse GetTree(string treeId)
+        [HttpGet("{tree_id}", Name = Routes.Trees.GET)]
+        public TreeResponse GetTree([FromRoute(Name = "tree_id")]string treeId)
         {
             return _repository
                 .Lookup<Tree>(treeId)
