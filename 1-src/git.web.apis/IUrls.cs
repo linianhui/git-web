@@ -6,10 +6,15 @@ namespace Git.Web.Apis
 
         string GetCommits();
 
-        string GetCommitById(string commitId);
+        string GetCommit(string commitId);
 
-        string GetTreeById(string treeId);
+        string GetTree(string treeId);
 
-        string GetBlobById(string blobId);
+        string GetBlob(string blobId);
+
+        string GetBranches();
+
+        string GetCommitsByBranch(string branchName);
+        string GetBranch(string name);
     }
 }

@@ -25,8 +25,8 @@ namespace Git.Web.Apis
                 .AddLinks(urls);
         }
 
-        [HttpGet("{commit_id}", Name = Urls.Names.GetCommitById)]
-        public CommitResponse GetCommitById([FromRoute(Name = "commit_id")]string commitId)
+        [HttpGet("{commitId}", Name = Urls.Names.GetCommit)]
+        public CommitResponse GetCommitById(string commitId)
         {
             var urls = new Urls(Url);
 

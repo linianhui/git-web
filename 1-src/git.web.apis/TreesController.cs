@@ -15,8 +15,8 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{tree_id}", Name = Urls.Names.GetTreeById)]
-        public TreeResponse GetTreeById([FromRoute(Name = "tree_id")]string treeId)
+        [HttpGet("{treeId}", Name = Urls.Names.GetTree)]
+        public TreeResponse GetTreeById(string treeId)
         {
             var urls = new Urls(Url);
 

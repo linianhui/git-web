@@ -44,9 +44,9 @@ namespace Git.Web.Apis.Responses
 
         public override CommitResponse AddLinks(IUrls urls)
         {
-            AddSelf(urls.GetCommitById(id));
-            parents.ForEach(_ => _.url = urls.GetCommitById(_.id));
-            tree.url = urls.GetTreeById(tree.id);
+            AddSelf(urls.GetCommit(id));
+            parents.ForEach(_ => _.url = urls.GetCommit(_.id));
+            tree.url = urls.GetTree(tree.id);
             return this;
         }
     }

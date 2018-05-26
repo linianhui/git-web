@@ -14,10 +14,13 @@ namespace Git.Web.Apis
         public static class Names
         {
             public const string GetHome = nameof(GetHome);
-            public const string GetBlobById = nameof(GetBlobById);
+            public const string GetBlob = nameof(GetBlob);
             public const string GetCommits = nameof(GetCommits);
-            public const string GetCommitById = nameof(GetCommitById);
-            public const string GetTreeById = nameof(GetTreeById);
+            public const string GetCommitsByBranch = nameof(GetCommitsByBranch);
+            public const string GetCommit = nameof(GetCommit);
+            public const string GetTree = nameof(GetTree);
+            public const string GetBranches = nameof(GetBranches);
+            public const string GetBranch = nameof(GetBranch);
         }
 
         public string GetHome()
@@ -25,24 +28,39 @@ namespace Git.Web.Apis
             return _url.Link(Names.GetHome, null);
         }
 
+        public string GetBranches()
+        {
+            return _url.Link(Names.GetBranches, null);
+        }
+
+        public string GetBranch(string branch)
+        {
+            return _url.Link(Names.GetBranch, new { branch = branch });
+        }
+
+        public string GetCommitsByBranch(string branch)
+        {
+            return _url.Link(Names.GetCommitsByBranch, new { branch = branch });
+        }
+
         public string GetCommits()
         {
             return _url.Link(Names.GetCommits, null);
         }
 
-        public string GetCommitById(string commitId)
+        public string GetCommit(string commitId)
         {
-            return _url.Link(Names.GetCommitById, new { commit_id = commitId });
+            return _url.Link(Names.GetCommit, new { commitId = commitId });
         }
 
-        public string GetTreeById(string treeId)
+        public string GetTree(string treeId)
         {
-            return _url.Link(Names.GetTreeById, new { tree_id = treeId });
+            return _url.Link(Names.GetTree, new { treeId = treeId });
         }
 
-        public string GetBlobById(string blobId)
+        public string GetBlob(string blobId)
         {
-            return _url.Link(Names.GetBlobById, new { blob_id = blobId });
+            return _url.Link(Names.GetBlob, new { blobId = blobId });
         }
     }
 }

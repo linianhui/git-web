@@ -15,8 +15,8 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{blob_id}", Name = Urls.Names.GetBlobById)]
-        public BlobResponse GetTree([FromRoute(Name = "blob_id")]string blobId)
+        [HttpGet("{blobId}", Name = Urls.Names.GetBlob)]
+        public BlobResponse GetTree(string blobId)
         {
             var urls = new Urls(Url);
 

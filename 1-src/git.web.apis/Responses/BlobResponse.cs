@@ -38,7 +38,7 @@ namespace Git.Web.Apis.Responses
 
         public override BlobResponse AddLinks(IUrls urls)
         {
-            AddSelf(urls.GetBlobById(id));
+            AddSelf(urls.GetBlob(id));
             return this;
         }
     }

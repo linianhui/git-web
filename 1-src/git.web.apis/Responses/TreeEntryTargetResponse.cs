@@ -26,10 +26,10 @@ namespace Git.Web.Apis.Responses
             switch (type)
             {
                 case TreeEntryTargetType.Blob:
-                    url = urls.GetBlobById(id);
+                    url = urls.GetBlob(id);
                     break;
                 case TreeEntryTargetType.Tree:
-                    url = urls.GetTreeById(id);
+                    url = urls.GetTree(id);
                     break;
                 case TreeEntryTargetType.GitLink:
                     break;

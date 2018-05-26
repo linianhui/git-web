@@ -32,7 +32,7 @@ namespace Git.Web.Apis.Responses
 
         public override TreeResponse AddLinks(IUrls urls)
         {
-            AddSelf(urls.GetTreeById(id));
+            AddSelf(urls.GetTree(id));
             entries.ForEach(_ => _.AddLinks(urls));
             return this;
         }

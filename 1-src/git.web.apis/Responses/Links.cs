@@ -6,9 +6,9 @@ namespace Git.Web.Apis.Responses
     {
         public List<Link> _links { get; } = new List<Link>();
 
-        protected void AddLink(Link linkResponse)
+        protected void AddLink(Link link)
         {
-            _links.Add(linkResponse);
+            _links.Add(link);
         }
 
         protected void AddSelf(string herf)
