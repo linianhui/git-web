@@ -25,5 +25,7 @@ namespace Git.Web.Apis.Routes
         Link GetTags();
 
         Link GetTagByName(string tagName);
+
+        Link GetHead();
     }
 }
