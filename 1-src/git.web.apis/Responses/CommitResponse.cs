@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class CommitResponse : Links<CommitResponse>
+    public class CommitResponse : LinkResponse<CommitResponse>
     {
-        private CommitResponse() { }
+        private CommitResponse()
+        {
+        }
 
         public string id { get; private set; }
 
@@ -22,6 +25,14 @@ namespace Git.Web.Apis.Responses
         public List<IdResponse> parents { get; private set; }
 
         public IdResponse tree { get; private set; }
+
+        public override CommitResponse AddLinks(ILinkProvider linkProvider)
+        {
+            AddSelf(linkProvider.GetCommitById(id));
+            parents.ForEach(_ => _.url = linkProvider.GetCommitById(_.id).herf);
+            tree.url = linkProvider.GetTreeById(tree.id).herf;
+            return this;
+        }
 
         public static CommitResponse From(Commit commit)
         {
@@ -40,14 +51,6 @@ namespace Git.Web.Apis.Responses
         public static List<CommitResponse> From(IEnumerable<Commit> commits)
         {
             return commits.Select(From).ToList();
-        }
-
-        public override CommitResponse AddLinks(IUrls urls)
-        {
-            AddSelf(urls.GetCommit(id));
-            parents.ForEach(_ => _.url = urls.GetCommit(_.id));
-            tree.url = urls.GetTree(tree.id);
-            return this;
         }
     }
 }

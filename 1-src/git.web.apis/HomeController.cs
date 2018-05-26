@@ -1,3 +1,5 @@
+using Git.Web.Apis.Responses;
+using Git.Web.Apis.Routes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -5,19 +7,11 @@ namespace Git.Web.Apis
     [Route("")]
     public class HomeController : Controller
     {
-        [HttpGet(Name = Urls.Names.GetHome)]
-        public object Index()
+        [HttpGet(Name = Rels.GetHome)]
+        public HomeResponse Index()
         {
-            var urls = new Urls(Url);
-
-            return new
-            {
-                home_url = urls.GetHome(),
-                docs_url = urls.GetHome() + ".docs",
-                config_url = urls.GetConfiguration(),
-                branches_url = urls.GetBranches(),
-                commits_url = urls.GetCommits()
-            };
+            var linkProvider = new LinkProvider(Url);
+            return new HomeResponse().AddLinks(linkProvider);
         }
     }
 }

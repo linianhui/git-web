@@ -5,7 +5,9 @@ namespace Git.Web.Apis.Responses
 {
     public sealed class SignatureResponse
     {
-        private SignatureResponse() { }
+        private SignatureResponse()
+        {
+        }
 
         public string name { get; private set; }
 

@@ -1,7 +1,8 @@
-using LibGit2Sharp;
-using Microsoft.AspNetCore.Mvc;
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
+using Git.Web.Apis.Routes;
+using LibGit2Sharp;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
@@ -14,14 +15,15 @@ namespace Git.Web.Apis
         {
             _repository = repository;
         }
-        [HttpGet(Name = Urls.Names.GetConfiguration)]
+
+        [HttpGet(Name = Rels.GetConfiguration)]
         public ConfigurationResponse GetConfiguration()
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
             return _repository.Config
                 .ToConfigurationResponse()
-                .AddLinks(urls);
+                .AddLinks(linkProvider);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,15 +16,15 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{blobId}", Name = Urls.Names.GetBlob)]
-        public BlobResponse GetTree(string blobId)
+        [HttpGet("{blobId}", Name = Rels.GetBlobById)]
+        public BlobResponse GetBlobById(string blobId)
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
             return _repository
                 .Lookup<Blob>(blobId)
                 .ToBlobResponse()
-                .AddLinks(urls);
+                .AddLinks(linkProvider);
         }
     }
 }

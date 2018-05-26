@@ -1,5 +1,6 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,25 +16,25 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet(Name = Urls.Names.GetCommits)]
+        [HttpGet(Name = Rels.GetCommits)]
         public CommitsResponse GetCommits()
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
             return _repository.Commits
                 .ToCommitsResponse()
-                .AddLinks(urls);
+                .AddLinks(linkProvider);
         }
 
-        [HttpGet("{commitId}", Name = Urls.Names.GetCommit)]
+        [HttpGet("{commitId}", Name = Rels.GetCommitById)]
         public CommitResponse GetCommitById(string commitId)
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
             return _repository
                 .Lookup<Commit>(commitId)
                 .ToCommitResponse()
-                .AddLinks(urls);
+                .AddLinks(linkProvider);
         }
     }
 }

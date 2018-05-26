@@ -1,18 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public sealed class ConfigurationResponse : Links<ConfigurationResponse>
+    public sealed class ConfigurationResponse : LinkResponse<ConfigurationResponse>
     {
-        private ConfigurationResponse() { }
+        private ConfigurationResponse()
+        {
+        }
 
         public IDictionary<string, IDictionary<ConfigurationLevel, string[]>> items { get; private set; }
 
-        public override ConfigurationResponse AddLinks(IUrls urls)
+        public override ConfigurationResponse AddLinks(ILinkProvider linkProvider)
         {
-            AddSelf(urls.GetConfiguration());
+            AddSelf(linkProvider.GetConfiguration());
             return this;
         }
 
@@ -33,7 +36,5 @@ namespace Git.Web.Apis.Responses
                 .GroupBy(l => l.Level)
                 .ToDictionary(lg => lg.Key, lg => lg.Select(lv => lv.Value).ToArray());
         }
-
-
     }
 }

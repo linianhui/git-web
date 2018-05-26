@@ -1,16 +1,36 @@
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
     public class TreeEntryTargetResponse
     {
-        private TreeEntryTargetResponse() { }
+        private TreeEntryTargetResponse()
+        {
+        }
 
         public string id { get; private set; }
 
         public string url { get; private set; }
 
         public TreeEntryTargetType type { get; private set; }
+
+        public void AddLinks(ILinkProvider linkProvider)
+        {
+            switch (type)
+            {
+                case TreeEntryTargetType.Blob:
+                    url = linkProvider.GetBlobById(id).herf;
+                    break;
+
+                case TreeEntryTargetType.Tree:
+                    url = linkProvider.GetTreeById(id).herf;
+                    break;
+
+                case TreeEntryTargetType.GitLink:
+                    break;
+            }
+        }
 
         public static TreeEntryTargetResponse From(TreeEntry treeEntry)
         {
@@ -19,21 +39,6 @@ namespace Git.Web.Apis.Responses
                 id = treeEntry.Target.Sha,
                 type = treeEntry.TargetType
             };
-        }
-
-        public void AddLinks(IUrls urls)
-        {
-            switch (type)
-            {
-                case TreeEntryTargetType.Blob:
-                    url = urls.GetBlob(id);
-                    break;
-                case TreeEntryTargetType.Tree:
-                    url = urls.GetTree(id);
-                    break;
-                case TreeEntryTargetType.GitLink:
-                    break;
-            }
         }
     }
 }

@@ -6,7 +6,9 @@ namespace Git.Web.Apis.Responses
 {
     public sealed class IdResponse
     {
-        private IdResponse() { }
+        private IdResponse()
+        {
+        }
 
         public string id { get; private set; }
 

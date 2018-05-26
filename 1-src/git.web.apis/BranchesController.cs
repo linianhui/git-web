@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,49 +18,48 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet(Name = Urls.Names.GetBranches)]
+        [HttpGet(Name = Rels.GetBranches)]
         public BranchesResponse GetBranches()
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
             return _repository.Branches
                 .ToBranchesResponse()
-                .AddLinks(urls);
+                .AddLinks(linkProvider);
         }
 
-        [HttpGet("{branch}", Name = Urls.Names.GetBranch)]
-        public BranchResponse GetBranch(string branch)
+        [HttpGet("{branchName}", Name = Rels.GetBranchByName)]
+        public BranchResponse GetBranchByName(string branchName)
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
-            return FindBrach(branch)
+            return FindBrach(branchName)
                 ?.ToBranchResponse()
-                .AddLinks(urls);
+                .AddLinks(linkProvider);
         }
 
-        [HttpGet("{branch}/commits", Name = Urls.Names.GetCommitsByBranch)]
-        public CommitsResponse GetCommitsByBranch(string branch)
+        [HttpGet("{branchName}/commits", Name = Rels.GetCommitsByBranchName)]
+        public CommitsResponse GetCommitsByBranchName(string branchName)
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
-            return FindBrach(branch)
+            return FindBrach(branchName)
                 ?.Commits
                 .ToCommitsResponse()
-                .AddLinks(urls);
-
+                .AddLinks(linkProvider);
         }
 
-        private Branch FindBrach(string branch)
+        private Branch FindBrach(string branchName)
         {
-            if (branch == null)
+            if (branchName == null)
             {
                 return null;
             }
 
-            branch = Uri.UnescapeDataString(branch);
+            branchName = Uri.UnescapeDataString(branchName);
 
             return _repository.Branches
-                .FirstOrDefault(_ => _.FriendlyName == branch || _.CanonicalName == branch);
+                .FirstOrDefault(_ => _.FriendlyName == branchName || _.CanonicalName == branchName);
         }
     }
 }

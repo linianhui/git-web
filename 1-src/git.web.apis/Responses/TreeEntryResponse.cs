@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
     public class TreeEntryResponse
     {
-        private TreeEntryResponse() { }
+        private TreeEntryResponse()
+        {
+        }
 
         public string path { get; private set; }
 
@@ -16,6 +19,11 @@ namespace Git.Web.Apis.Responses
         public Mode mode { get; private set; }
 
         public TreeEntryTargetResponse target { get; private set; }
+
+        public void AddLinks(ILinkProvider linkProvider)
+        {
+            target.AddLinks(linkProvider);
+        }
 
         public static TreeEntryResponse From(TreeEntry treeEntry)
         {
@@ -31,11 +39,6 @@ namespace Git.Web.Apis.Responses
         public static List<TreeEntryResponse> From(IEnumerable<TreeEntry> trees)
         {
             return trees.Select(From).ToList();
-        }
-
-        public void AddLinks(IUrls urls)
-        {
-            target.AddLinks(urls);
         }
     }
 }

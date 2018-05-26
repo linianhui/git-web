@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-src", "1-src", "{E00F1DCE-8B0D-48CE-AAC4-B8BB9995CC3E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "git.web", "1-src\git.web\git.web.csproj", "{5334E4EA-4780-45FF-B072-81F8B02734D3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "git.web.apis", "1-src\git.web.apis\git.web.apis.csproj", "{CCDB2F76-1C1D-49F1-8420-BEEFABF6A9B9}"
@@ -32,11 +30,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5334E4EA-4780-45FF-B072-81F8B02734D3} = {E00F1DCE-8B0D-48CE-AAC4-B8BB9995CC3E}
-		{CCDB2F76-1C1D-49F1-8420-BEEFABF6A9B9} = {E00F1DCE-8B0D-48CE-AAC4-B8BB9995CC3E}
-		{B2058549-3E0A-4FFE-8013-3FDED135AF18} = {E00F1DCE-8B0D-48CE-AAC4-B8BB9995CC3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10FBBCE7-F600-43AF-BEDF-432F7A920AC9}

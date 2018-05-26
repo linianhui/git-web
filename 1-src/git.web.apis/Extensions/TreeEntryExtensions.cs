@@ -9,7 +9,6 @@ namespace Git.Web.Apis.Extensions
         public static TreeEntryResponse ToTreeEntryResponse(this TreeEntry @this)
         {
             return TreeEntryResponse.From(@this);
-
         }
 
         public static TreeEntryTargetResponse ToTreeEntryTargetResponse(this TreeEntry @this)

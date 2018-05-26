@@ -1,5 +1,6 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
+using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,15 +16,15 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{treeId}", Name = Urls.Names.GetTree)]
+        [HttpGet("{treeId}", Name = Rels.GetTreeById)]
         public TreeResponse GetTreeById(string treeId)
         {
-            var urls = new Urls(Url);
+            var linkProvider = new LinkProvider(Url);
 
             return _repository
                 .Lookup<Tree>(treeId)
                 .ToTreeResponse()
-                .AddLinks(urls);
+                .AddLinks(linkProvider);
         }
     }
 }
