@@ -21,11 +21,17 @@ namespace Git.Web.Apis
             public const string GetTree = nameof(GetTree);
             public const string GetBranches = nameof(GetBranches);
             public const string GetBranch = nameof(GetBranch);
+            public const string GetConfiguration = nameof(GetConfiguration);
         }
 
         public string GetHome()
         {
             return _url.Link(Names.GetHome, null);
+        }
+
+        public string GetConfiguration()
+        {
+            return _url.Link(Names.GetConfiguration, null);
         }
 
         public string GetBranches()

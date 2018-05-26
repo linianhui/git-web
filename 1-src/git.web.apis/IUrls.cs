@@ -15,6 +15,9 @@ namespace Git.Web.Apis
         string GetBranches();
 
         string GetCommitsByBranch(string branchName);
+
         string GetBranch(string name);
+
+        string GetConfiguration();
     }
 }

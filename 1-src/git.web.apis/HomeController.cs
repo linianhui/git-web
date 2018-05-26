@@ -14,6 +14,7 @@ namespace Git.Web.Apis
             {
                 home_url = urls.GetHome(),
                 docs_url = urls.GetHome() + ".docs",
+                config_url = urls.GetConfiguration(),
                 branches_url = urls.GetBranches(),
                 commits_url = urls.GetCommits()
             };
