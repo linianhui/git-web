@@ -26,6 +26,16 @@ namespace Git.Web.Apis.Routes
             return GetLink(Rels.GetConfiguration, null);
         }
 
+        public Link GetTags()
+        {
+            return GetLink(Rels.GetTags, null);
+        }
+
+        public Link GetTagByName(string tagName)
+        {
+            return GetLink(Rels.GetTagByName, new { tagName });
+        }
+
         public Link GetBranches()
         {
             return GetLink(Rels.GetBranches, null);

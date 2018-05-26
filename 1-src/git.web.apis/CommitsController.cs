@@ -19,7 +19,7 @@ namespace Git.Web.Apis
         [HttpGet(Name = Rels.GetCommits)]
         public CommitsResponse GetCommits()
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return _repository.Commits
                 .ToCommitsResponse()
@@ -29,7 +29,7 @@ namespace Git.Web.Apis
         [HttpGet("{commitId}", Name = Rels.GetCommitById)]
         public CommitResponse GetCommitById(string commitId)
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return _repository
                 .Lookup<Commit>(commitId)

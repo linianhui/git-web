@@ -19,7 +19,7 @@ namespace Git.Web.Apis
         [HttpGet("{treeId}", Name = Rels.GetTreeById)]
         public TreeResponse GetTreeById(string treeId)
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return _repository
                 .Lookup<Tree>(treeId)

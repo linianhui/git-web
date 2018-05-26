@@ -21,5 +21,9 @@ namespace Git.Web.Apis.Routes
         Link GetBranchByName(string branchName);
 
         Link GetConfiguration();
+
+        Link GetTags();
+
+        Link GetTagByName(string tagName);
     }
 }

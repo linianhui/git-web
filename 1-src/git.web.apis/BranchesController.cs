@@ -21,7 +21,7 @@ namespace Git.Web.Apis
         [HttpGet(Name = Rels.GetBranches)]
         public BranchesResponse GetBranches()
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return _repository.Branches
                 .ToBranchesResponse()
@@ -31,7 +31,7 @@ namespace Git.Web.Apis
         [HttpGet("{branchName}", Name = Rels.GetBranchByName)]
         public BranchResponse GetBranchByName(string branchName)
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return FindBrach(branchName)
                 ?.ToBranchResponse()
@@ -41,7 +41,7 @@ namespace Git.Web.Apis
         [HttpGet("{branchName}/commits", Name = Rels.GetCommitsByBranchName)]
         public CommitsResponse GetCommitsByBranchName(string branchName)
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return FindBrach(branchName)
                 ?.Commits

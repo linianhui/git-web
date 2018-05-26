@@ -19,7 +19,7 @@ namespace Git.Web.Apis
         [HttpGet(Name = Rels.GetConfiguration)]
         public ConfigurationResponse GetConfiguration()
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return _repository.Config
                 .ToConfigurationResponse()

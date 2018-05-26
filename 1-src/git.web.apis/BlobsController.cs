@@ -19,7 +19,7 @@ namespace Git.Web.Apis
         [HttpGet("{blobId}", Name = Rels.GetBlobById)]
         public BlobResponse GetBlobById(string blobId)
         {
-            var linkProvider = new LinkProvider(Url);
+            var linkProvider = this.GetLinkProvider();
 
             return _repository
                 .Lookup<Blob>(blobId)
