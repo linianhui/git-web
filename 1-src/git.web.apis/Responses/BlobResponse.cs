@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using LibGit2Sharp;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis.Responses
 {
-    public class BlobResponse : LinksResponse<BlobResponse>
+    public class BlobResponse : Links<BlobResponse>
     {
         private BlobResponse() { }
 
@@ -37,9 +36,9 @@ namespace Git.Web.Apis.Responses
             return blobs.Select(From).ToList();
         }
 
-        public override BlobResponse AddLinks(IUrlHelper url)
+        public override BlobResponse AddLinks(IUrls urls)
         {
-            AddSelf(Routes.Blobs.Links.Get(url, id));
+            AddSelf(urls.GetBlobById(id));
             return this;
         }
     }

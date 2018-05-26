@@ -1,5 +1,4 @@
 using LibGit2Sharp;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis.Responses
 {
@@ -22,15 +21,15 @@ namespace Git.Web.Apis.Responses
             };
         }
 
-        public void AddLinks(IUrlHelper url)
+        public void AddLinks(IUrls urls)
         {
             switch (type)
             {
                 case TreeEntryTargetType.Blob:
-                    this.url = Routes.Blobs.Links.Get(url, id);
+                    url = urls.GetBlobById(id);
                     break;
                 case TreeEntryTargetType.Tree:
-                    this.url = Routes.Trees.Links.Get(url, id);
+                    url = urls.GetTreeById(id);
                     break;
                 case TreeEntryTargetType.GitLink:
                     break;

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
 using LibGit2Sharp;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis.Responses
 {
@@ -34,9 +33,9 @@ namespace Git.Web.Apis.Responses
             return trees.Select(From).ToList();
         }
 
-        public void AddLinks(IUrlHelper url)
+        public void AddLinks(IUrls urls)
         {
-            target.AddLinks(url);
+            target.AddLinks(urls);
         }
     }
 }

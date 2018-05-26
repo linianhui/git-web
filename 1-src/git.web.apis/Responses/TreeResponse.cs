@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
 using LibGit2Sharp;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis.Responses
 {
-    public class TreeResponse : LinksResponse<TreeResponse>
+    public class TreeResponse : Links<TreeResponse>
     {
         private TreeResponse() { }
 
@@ -31,10 +30,10 @@ namespace Git.Web.Apis.Responses
             return trees.Select(From).ToList();
         }
 
-        public override TreeResponse AddLinks(IUrlHelper url)
+        public override TreeResponse AddLinks(IUrls urls)
         {
-            AddSelf(Routes.Trees.Links.Get(url, id));
-            entries.ForEach(_ => _.AddLinks(url));
+            AddSelf(urls.GetTreeById(id));
+            entries.ForEach(_ => _.AddLinks(urls));
             return this;
         }
     }

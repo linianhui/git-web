@@ -15,13 +15,15 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{tree_id}", Name = Routes.Trees.GET)]
-        public TreeResponse GetTree([FromRoute(Name = "tree_id")]string treeId)
+        [HttpGet("{tree_id}", Name = Urls.Names.GetTreeById)]
+        public TreeResponse GetTreeById([FromRoute(Name = "tree_id")]string treeId)
         {
+            var urls = new Urls(Url);
+
             return _repository
                 .Lookup<Tree>(treeId)
                 .ToTreeResponse()
-                .AddLinks(Url);
+                .AddLinks(urls);
         }
     }
 }

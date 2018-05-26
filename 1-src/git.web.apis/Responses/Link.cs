@@ -1,16 +1,16 @@
 namespace Git.Web.Apis.Responses
 {
-    public sealed class LinkResponse
+    public sealed class Link
     {
-        private LinkResponse() { }
+        private Link() { }
 
         public string rel { get; private set; }
 
         public string herf { get; private set; }
 
-        public static LinkResponse From(string rel, string herf)
+        public static Link From(string rel, string herf)
         {
-            return new LinkResponse
+            return new Link
             {
                 rel = rel,
                 herf = herf

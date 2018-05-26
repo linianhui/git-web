@@ -15,13 +15,15 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet("{blob_id}", Name = Routes.Blobs.GET)]
+        [HttpGet("{blob_id}", Name = Urls.Names.GetBlobById)]
         public BlobResponse GetTree([FromRoute(Name = "blob_id")]string blobId)
         {
+            var urls = new Urls(Url);
+
             return _repository
                 .Lookup<Blob>(blobId)
                 .ToBlobResponse()
-                .AddLinks(Url);
+                .AddLinks(urls);
         }
     }
 }

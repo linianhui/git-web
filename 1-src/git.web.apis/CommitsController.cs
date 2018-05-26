@@ -15,21 +15,25 @@ namespace Git.Web.Apis
             _repository = repository;
         }
 
-        [HttpGet(Name = Routes.Commits.GET_ALL)]
+        [HttpGet(Name = Urls.Names.GetCommits)]
         public CommitsResponse GetCommits()
         {
+            var urls = new Urls(Url);
+
             return _repository.Commits
                 .ToCommitsResponse()
-                .AddLinks(Url);
+                .AddLinks(urls);
         }
 
-        [HttpGet("{commit_id}", Name = Routes.Commits.GET)]
-        public CommitResponse GetCommit([FromRoute(Name = "commit_id")]string commitId)
+        [HttpGet("{commit_id}", Name = Urls.Names.GetCommitById)]
+        public CommitResponse GetCommitById([FromRoute(Name = "commit_id")]string commitId)
         {
+            var urls = new Urls(Url);
+
             return _repository
                 .Lookup<Commit>(commitId)
                 .ToCommitResponse()
-                .AddLinks(Url);
+                .AddLinks(urls);
         }
     }
 }

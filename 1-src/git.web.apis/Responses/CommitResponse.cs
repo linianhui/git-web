@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
 using LibGit2Sharp;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis.Responses
 {
-    public class CommitResponse : LinksResponse<CommitResponse>
+    public class CommitResponse : Links<CommitResponse>
     {
         private CommitResponse() { }
 
@@ -43,11 +42,11 @@ namespace Git.Web.Apis.Responses
             return commits.Select(From).ToList();
         }
 
-        public override CommitResponse AddLinks(IUrlHelper url)
+        public override CommitResponse AddLinks(IUrls urls)
         {
-            AddSelf(Routes.Commits.Links.Get(url, id));
-            parents.ForEach(_ => _.url = Routes.Commits.Links.Get(url, _.id));
-            tree.url = Routes.Trees.Links.Get(url, tree.id);
+            AddSelf(urls.GetCommitById(id));
+            parents.ForEach(_ => _.url = urls.GetCommitById(_.id));
+            tree.url = urls.GetTreeById(tree.id);
             return this;
         }
     }
