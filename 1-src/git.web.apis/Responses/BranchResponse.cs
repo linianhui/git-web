@@ -26,7 +26,7 @@ namespace Git.Web.Apis.Responses
 
         public bool is_tracking { get; private set; }
 
-        public IdResponse tip { get; set; }
+        public GitObjectResponse tip { get; set; }
 
         public object tracking_details { get; set; }
 
@@ -38,7 +38,7 @@ namespace Git.Web.Apis.Responses
         {
             AddSelf(linkProvider.GetBranchByName(friendly_name));
             AddLink(linkProvider.GetCommitsByBranchName(friendly_name));
-            tip.url = linkProvider.GetCommitById(tip.id).herf;
+            tip.AddLinks(linkProvider);
             return this;
         }
 
@@ -52,7 +52,7 @@ namespace Git.Web.Apis.Responses
                 is_remote = branch.IsRemote,
                 is_tracking = branch.IsTracking,
                 remote_name = branch.RemoteName,
-                tip = branch.Tip.ToIdResponse(),
+                tip = branch.Tip.ToGitObjectResponse(),
                 upstream_branch_canonical_name = branch.UpstreamBranchCanonicalName,
                 //reference = branch.Reference,
                 //tracked_branch = branch.TrackedBranch,

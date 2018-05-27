@@ -11,11 +11,6 @@ namespace Git.Web.Apis.Extensions
             return TreeEntryResponse.From(@this);
         }
 
-        public static TreeEntryTargetResponse ToTreeEntryTargetResponse(this TreeEntry @this)
-        {
-            return TreeEntryTargetResponse.From(@this);
-        }
-
         public static List<TreeEntryResponse> ToTreeEntryResponses(this IEnumerable<TreeEntry> @this)
         {
             return TreeEntryResponse.From(@this);

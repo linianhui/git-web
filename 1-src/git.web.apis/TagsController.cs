@@ -1,6 +1,5 @@
-using System;
-using System.Linq;
 using Git.Web.Apis.Extensions;
+using Git.Web.Apis.LibGit2;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;
 using LibGit2Sharp;
@@ -33,22 +32,10 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return FindTag(tagName)
+            return _repository
+                .FindTag(tagName)
                 ?.ToTagResponse()
                 .AddLinks(linkProvider);
-        }
-
-        private Tag FindTag(string tagName)
-        {
-            if (tagName == null)
-            {
-                return null;
-            }
-
-            tagName = Uri.UnescapeDataString(tagName);
-
-            return _repository.Tags
-                .FirstOrDefault(_ => _.FriendlyName == tagName || _.CanonicalName == tagName);
         }
     }
 }

@@ -22,15 +22,15 @@ namespace Git.Web.Apis.Responses
 
         public string encoding { get; private set; }
 
-        public List<IdResponse> parents { get; private set; }
+        public List<GitObjectResponse> parents { get; private set; }
 
-        public IdResponse tree { get; private set; }
+        public GitObjectResponse tree { get; private set; }
 
         public override CommitResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetCommitById(id));
-            parents.ForEach(_ => _.url = linkProvider.GetCommitById(_.id).herf);
-            tree.url = linkProvider.GetTreeById(tree.id).herf;
+            parents.ForEach(_ => _.AddLinks(linkProvider));
+            tree.AddLinks(linkProvider);
             return this;
         }
 
@@ -43,8 +43,8 @@ namespace Git.Web.Apis.Responses
                 author = commit.Author.ToSignatureResponse(),
                 committer = commit.Committer.ToSignatureResponse(),
                 message = commit.Message,
-                parents = commit.Parents.ToIdResponses(),
-                tree = commit.Tree.ToIdResponse()
+                parents = commit.Parents.ToGitObjectResponses(),
+                tree = commit.Tree.ToGitObjectResponse()
             };
         }
 

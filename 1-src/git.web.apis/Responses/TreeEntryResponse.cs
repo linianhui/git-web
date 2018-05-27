@@ -18,11 +18,12 @@ namespace Git.Web.Apis.Responses
 
         public Mode mode { get; private set; }
 
-        public TreeEntryTargetResponse target { get; private set; }
+        public GitObjectResponse target { get; private set; }
 
-        public void AddLinks(ILinkProvider linkProvider)
+        public TreeEntryResponse AddLinks(ILinkProvider linkProvider)
         {
             target.AddLinks(linkProvider);
+            return this;
         }
 
         public static TreeEntryResponse From(TreeEntry treeEntry)
@@ -30,7 +31,7 @@ namespace Git.Web.Apis.Responses
             return new TreeEntryResponse
             {
                 path = treeEntry.Path,
-                target = treeEntry.ToTreeEntryTargetResponse(),
+                target = treeEntry.Target.ToGitObjectResponse(),
                 name = treeEntry.Name,
                 mode = treeEntry.Mode
             };

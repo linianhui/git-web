@@ -1,5 +1,4 @@
-using System;
-using System.Linq;
+using Git.Web.Apis.LibGit2;
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;
@@ -33,7 +32,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return FindBrach(branchName)
+            return _repository
+                .FindBranch(branchName)
                 ?.ToBranchResponse()
                 .AddLinks(linkProvider);
         }
@@ -43,23 +43,11 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return FindBrach(branchName)
+            return _repository
+                .FindBranch(branchName)
                 ?.Commits
                 .ToCommitsResponse()
                 .AddLinks(linkProvider);
-        }
-
-        private Branch FindBrach(string branchName)
-        {
-            if (branchName == null)
-            {
-                return null;
-            }
-
-            branchName = Uri.UnescapeDataString(branchName);
-
-            return _repository.Branches
-                .FirstOrDefault(_ => _.FriendlyName == branchName || _.CanonicalName == branchName);
         }
     }
 }
