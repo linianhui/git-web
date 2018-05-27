@@ -28,5 +28,17 @@ namespace Git.Web.Apis.LibGit2
 
             return @this.Branches[branchName];
         }
+
+        public static Remote FindRemote(this IRepository @this, string remoteName)
+        {
+            if (@this == null || remoteName == null)
+            {
+                return null;
+            }
+
+            remoteName = Uri.UnescapeDataString(remoteName);
+
+            return @this.Network.Remotes[remoteName];
+        }
     }
 }

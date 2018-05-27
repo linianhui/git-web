@@ -13,22 +13,22 @@ namespace Git.Web.Apis.Routes
 
         public Link GetHome()
         {
-            return GetLink(Rels.GetHome, null);
+            return GetLink(Rels.GetHome);
         }
 
         public Link GetDocs(string docsPath)
         {
-            return Link.From(Rels.GetDocs, _urlHelper.Link(Rels.GetHome, null) + docsPath);
+            return Link.From(Rels.GetDocs, GetHome().herf + docsPath);
         }
 
         public Link GetConfiguration()
         {
-            return GetLink(Rels.GetConfiguration, null);
+            return GetLink(Rels.GetConfiguration);
         }
 
         public Link GetTags()
         {
-            return GetLink(Rels.GetTags, null);
+            return GetLink(Rels.GetTags);
         }
 
         public Link GetTagByName(string tagName)
@@ -38,12 +38,22 @@ namespace Git.Web.Apis.Routes
 
         public Link GetHead()
         {
-            return GetLink(Rels.GetHead, null);
+            return GetLink(Rels.GetHead);
+        }
+
+        public Link GetRemotes()
+        {
+            return GetLink(Rels.GetRemotes);
+        }
+
+        public Link GetRemoteByName(string remoteName)
+        {
+            return GetLink(Rels.GetRemoteByName, new { remoteName });
         }
 
         public Link GetBranches()
         {
-            return GetLink(Rels.GetBranches, null);
+            return GetLink(Rels.GetBranches);
         }
 
         public Link GetBranchByName(string branchName)
@@ -58,7 +68,7 @@ namespace Git.Web.Apis.Routes
 
         public Link GetCommits()
         {
-            return GetLink(Rels.GetCommits, null);
+            return GetLink(Rels.GetCommits);
         }
 
         public Link GetCommitById(string commitId)
@@ -76,7 +86,7 @@ namespace Git.Web.Apis.Routes
             return GetLink(Rels.GetBlobById, new { blobId });
         }
 
-        private Link GetLink(string rel, object values)
+        private Link GetLink(string rel, object values = null)
         {
             return Link.From(rel, _urlHelper.Link(rel, values));
         }

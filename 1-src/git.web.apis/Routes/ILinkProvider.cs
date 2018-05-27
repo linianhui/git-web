@@ -27,5 +27,9 @@ namespace Git.Web.Apis.Routes
         Link GetTagByName(string tagName);
 
         Link GetHead();
+
+        Link GetRemotes();
+
+        Link GetRemoteByName(string remoteName);
     }
 }

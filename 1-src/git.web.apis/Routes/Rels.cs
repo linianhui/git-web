@@ -15,5 +15,7 @@ namespace Git.Web.Apis.Routes
         public const string GetTags = "get.tags";
         public const string GetTagByName = "get.tag.by_name";
         public const string GetHead = "get.head";
+        public const string GetRemotes = "get.remotes";
+        public const string GetRemoteByName = "get.remote.by_name";
     }
 }

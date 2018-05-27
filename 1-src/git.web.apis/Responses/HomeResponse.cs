@@ -13,6 +13,7 @@ namespace Git.Web.Apis.Responses
             AddLink(linkProvider.GetTags());
             AddLink(linkProvider.GetCommits());
             AddLink(linkProvider.GetHead());
+            AddLink(linkProvider.GetRemotes());
             return this;
         }
     }
