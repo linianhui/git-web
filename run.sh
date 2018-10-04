@@ -1,0 +1,1 @@
+dotnet run --project ./1-src/git.web/git.web.csproj
