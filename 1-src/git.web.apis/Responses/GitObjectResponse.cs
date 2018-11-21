@@ -24,15 +24,19 @@ namespace Git.Web.Apis.Responses
             {
                 case GitObjectType.NONE:
                     break;
+
                 case GitObjectType.COMMIT:
                     url = linkProvider.GetCommitById(id).herf;
                     break;
+
                 case GitObjectType.TREE:
                     url = linkProvider.GetTreeById(id).herf;
                     break;
+
                 case GitObjectType.BLOB:
                     url = linkProvider.GetBlobById(id).herf;
                     break;
+
                 case GitObjectType.TAG:
                     break;
             }

@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;

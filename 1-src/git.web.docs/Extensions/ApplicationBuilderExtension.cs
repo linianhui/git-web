@@ -1,5 +1,7 @@
 // ReSharper disable CheckNamespace
 
+using Swashbuckle.AspNetCore.SwaggerUI;
+
 namespace Microsoft.AspNetCore.Builder
 {
     /// <summary>

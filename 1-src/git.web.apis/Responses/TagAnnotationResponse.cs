@@ -32,7 +32,7 @@ namespace Git.Web.Apis.Responses
                 message = tagAnnotation.Message,
                 name = tagAnnotation.Name,
                 tagger = tagAnnotation.Tagger.ToSignatureResponse(),
-               //target = tagAnnotation.Target
+                //target = tagAnnotation.Target
             };
         }
     }

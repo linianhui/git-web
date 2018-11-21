@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
+
 // ReSharper disable CheckNamespace
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -19,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             @this.AddSwaggerGen(_ =>
             {
-                _.SwaggerDoc("api",  new Info { Title="API Docs"});
+                _.SwaggerDoc("api", new Info { Title = "API Docs" });
                 foreach (var filePath in GetXmlCommentFilePaths())
                 {
                     _.IncludeXmlComments(filePath);
@@ -29,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
         private static IEnumerable<string> GetXmlCommentFilePaths()
         {
-            var binPath = PlatformServices.Default.Application.ApplicationBasePath;
+            var binPath = AppContext.BaseDirectory;
             return Directory.GetFiles(binPath, "*.xml");
         }
     }
