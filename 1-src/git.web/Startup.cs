@@ -11,7 +11,7 @@ namespace Git.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiDocs();
-            services.AddScoped(typeof(IRepository), _ => new Repository(@"d:\.github\.lnh\code"));
+            services.AddScoped(typeof(IRepository), _ => new Repository(@"d:\.github\git.web"));
             services.AddMvc().AddJsonOptions(_ =>
             {
                 _.SerializerSettings.Converters.Add(new StringEnumConverter());
