@@ -5,24 +5,24 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public sealed class TagsResponse : LinkResponse<TagsResponse>
+    public sealed class TagListResponse : LinkResponse<TagListResponse>
     {
-        private TagsResponse()
+        private TagListResponse()
         {
         }
 
         public List<TagResponse> tags { get; private set; }
 
-        public override TagsResponse AddLinks(ILinkProvider linkProvider)
+        public override TagListResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetTags());
             tags.ForEach(_ => _.AddLinks(linkProvider));
             return this;
         }
 
-        public static TagsResponse From(IEnumerable<Tag> tags)
+        public static TagListResponse From(IEnumerable<Tag> tags)
         {
-            return new TagsResponse
+            return new TagListResponse
             {
                 tags = tags.ToTagResponses()
             };

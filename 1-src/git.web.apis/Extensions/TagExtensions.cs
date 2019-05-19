@@ -21,9 +21,9 @@ namespace Git.Web.Apis.Extensions
             return TagResponse.From(@this);
         }
 
-        public static TagsResponse ToTagsResponse(this IEnumerable<Tag> @this)
+        public static TagListResponse ToTagListResponse(this IEnumerable<Tag> @this)
         {
-            return TagsResponse.From(@this);
+            return TagListResponse.From(@this);
         }
     }
 }

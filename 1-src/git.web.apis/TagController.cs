@@ -17,14 +17,14 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.GetTags)]
-        public TagsResponse GetTags(string repositoryName)
+        public TagListResponse GetTagList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Tags
-                .ToTagsResponse()
+                .ToTagListResponse()
                 .AddLinks(linkProvider);
         }
 

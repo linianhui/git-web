@@ -16,9 +16,9 @@ namespace Git.Web.Apis.Extensions
             return BranchResponse.From(@this);
         }
 
-        public static BranchesResponse ToBranchesResponse(this IEnumerable<Branch> @this)
+        public static BranchListResponse ToBranchListResponse(this IEnumerable<Branch> @this)
         {
-            return BranchesResponse.From(@this);
+            return BranchListResponse.From(@this);
         }
     }
 }

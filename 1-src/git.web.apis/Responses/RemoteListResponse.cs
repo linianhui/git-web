@@ -5,24 +5,24 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public sealed class RemotesResponse : LinkResponse<RemotesResponse>
+    public sealed class RemoteListResponse : LinkResponse<RemoteListResponse>
     {
-        private RemotesResponse()
+        private RemoteListResponse()
         {
         }
 
         public List<RemoteResponse> remotes { get; private set; }
 
-        public override RemotesResponse AddLinks(ILinkProvider linkProvider)
+        public override RemoteListResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetRemotes());
             remotes.ForEach(_ => _.AddLinks(linkProvider));
             return this;
         }
 
-        public static RemotesResponse From(IEnumerable<Remote> commits)
+        public static RemoteListResponse From(IEnumerable<Remote> commits)
         {
-            return new RemotesResponse
+            return new RemoteListResponse
             {
                 remotes = commits.ToRemoteResponses()
             };

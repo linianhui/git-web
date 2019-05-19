@@ -16,9 +16,9 @@ namespace Git.Web.Apis.Extensions
             return CommitResponse.From(@this);
         }
 
-        public static CommitsResponse ToCommitsResponse(this IEnumerable<Commit> @this)
+        public static CommitListResponse ToCommitListResponse(this IEnumerable<Commit> @this)
         {
-            return CommitsResponse.From(@this);
+            return CommitListResponse.From(@this);
         }
     }
 }

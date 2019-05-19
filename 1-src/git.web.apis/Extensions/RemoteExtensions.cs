@@ -21,9 +21,9 @@ namespace Git.Web.Apis.Extensions
             return RefSpecResponse.From(@this);
         }
 
-        public static RemotesResponse ToRemotesResponse(this IEnumerable<Remote> @this)
+        public static RemoteListResponse ToRemoteListResponse(this IEnumerable<Remote> @this)
         {
-            return RemotesResponse.From(@this);
+            return RemoteListResponse.From(@this);
         }
     }
 }

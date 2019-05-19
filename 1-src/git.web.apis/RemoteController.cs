@@ -17,7 +17,7 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.GetRemotes)]
-        public RemotesResponse GetRemotes(string repositoryName)
+        public RemoteListResponse GetRemoteList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
@@ -25,7 +25,7 @@ namespace Git.Web.Apis
                 .GetRepository(repositoryName)
                 .Network
                 .Remotes
-                .ToRemotesResponse()
+                .ToRemoteListResponse()
                 .AddLinks(linkProvider);
         }
 

@@ -5,24 +5,24 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public sealed class CommitsResponse : LinkResponse<CommitsResponse>
+    public sealed class CommitListResponse : LinkResponse<CommitListResponse>
     {
-        private CommitsResponse()
+        private CommitListResponse()
         {
         }
 
         public List<CommitResponse> commits { get; private set; }
 
-        public override CommitsResponse AddLinks(ILinkProvider linkProvider)
+        public override CommitListResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetCommits());
             commits.ForEach(_ => _.AddLinks(linkProvider));
             return this;
         }
 
-        public static CommitsResponse From(IEnumerable<Commit> commits)
+        public static CommitListResponse From(IEnumerable<Commit> commits)
         {
-            return new CommitsResponse
+            return new CommitListResponse
             {
                 commits = commits.ToCommitResponses()
             };

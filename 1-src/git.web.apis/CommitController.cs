@@ -17,14 +17,14 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.GetCommits)]
-        public CommitsResponse GetCommits(string repositoryName)
+        public CommitListResponse GetCommitList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Commits
-                .ToCommitsResponse()
+                .ToCommitListResponse()
                 .AddLinks(linkProvider);
         }
 
