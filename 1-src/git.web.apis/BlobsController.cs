@@ -9,11 +9,11 @@ namespace Git.Web.Apis
     [Route("blobs")]
     public class BlobsController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public BlobsController(IRepository repository)
+        public BlobsController(IRepositoryFactory repositoryFactory)
         {
-            _repository = repository;
+            _repositoryFactory = repositoryFactory;
         }
 
         [HttpGet("{blobId}", Name = Rels.GetBlobById)]
@@ -21,7 +21,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .Lookup<Blob>(blobId)
                 .ToBlobResponse()
                 .AddLinks(linkProvider);

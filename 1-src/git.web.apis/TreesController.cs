@@ -9,11 +9,11 @@ namespace Git.Web.Apis
     [Route("trees")]
     public class TreesController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public TreesController(IRepository repository)
+        public TreesController(IRepositoryFactory repositoryFactory)
         {
-            _repository = repository;
+            _repositoryFactory = repositoryFactory;
         }
 
         [HttpGet("{treeId}", Name = Rels.GetTreeById)]
@@ -21,7 +21,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .Lookup<Tree>(treeId)
                 .ToTreeResponse()
                 .AddLinks(linkProvider);

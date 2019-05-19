@@ -1,3 +1,4 @@
+using Git.Web.Apis;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +12,7 @@ namespace Git.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiDocs();
-            services.AddScoped(typeof(IRepository), _ => new Repository(@"d:\.code\.lnh\git.web"));
+            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
             services.AddMvc().AddJsonOptions(_ =>
             {
                 _.SerializerSettings.Converters.Add(new StringEnumConverter());

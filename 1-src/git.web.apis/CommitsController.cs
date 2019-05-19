@@ -9,11 +9,11 @@ namespace Git.Web.Apis
     [Route("commits")]
     public class CommitsController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public CommitsController(IRepository repository)
+        public CommitsController(IRepositoryFactory repositoryFactory)
         {
-            _repository = repository;
+            _repositoryFactory = repositoryFactory;
         }
 
         [HttpGet(Name = Rels.GetCommits)]
@@ -21,7 +21,9 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository.Commits
+            return _repositoryFactory
+                .GetRepository()
+                .Commits
                 .ToCommitsResponse()
                 .AddLinks(linkProvider);
         }
@@ -31,7 +33,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .Lookup<Commit>(commitId)
                 .ToCommitResponse()
                 .AddLinks(linkProvider);

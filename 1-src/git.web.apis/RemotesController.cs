@@ -2,7 +2,6 @@ using Git.Web.Apis.Extensions;
 using Git.Web.Apis.LibGit2;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;
-using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -10,11 +9,11 @@ namespace Git.Web.Apis
     [Route("remotes")]
     public class RemotesController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public RemotesController(IRepository repository)
+        public RemotesController(IRepositoryFactory repositoryFactory)
         {
-            _repository = repository;
+            _repositoryFactory = repositoryFactory;
         }
 
         [HttpGet(Name = Rels.GetRemotes)]
@@ -22,7 +21,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .Network
                 .Remotes
                 .ToRemotesResponse()
@@ -34,7 +34,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .FindRemote(remoteName)
                 ?.ToRemoteResponse()
                 .AddLinks(linkProvider);

@@ -2,7 +2,6 @@ using Git.Web.Apis.Extensions;
 using Git.Web.Apis.LibGit2;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;
-using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -10,11 +9,11 @@ namespace Git.Web.Apis
     [Route("tags")]
     public class TagsController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public TagsController(IRepository repository)
+        public TagsController(IRepositoryFactory repositoryFactory)
         {
-            _repository = repository;
+            _repositoryFactory = repositoryFactory;
         }
 
         [HttpGet(Name = Rels.GetTags)]
@@ -22,7 +21,9 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository.Tags
+            return _repositoryFactory
+                .GetRepository()
+                .Tags
                 .ToTagsResponse()
                 .AddLinks(linkProvider);
         }
@@ -32,7 +33,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .FindTag(tagName)
                 ?.ToTagResponse()
                 .AddLinks(linkProvider);

@@ -1,7 +1,6 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;
-using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -9,11 +8,11 @@ namespace Git.Web.Apis
     [Route("configuration")]
     public class ConfigurationController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public ConfigurationController(IRepository repository)
+        public ConfigurationController(IRepositoryFactory repositoryFactory)
         {
-            _repository = repository;
+            _repositoryFactory = repositoryFactory;
         }
 
         [HttpGet(Name = Rels.GetConfiguration)]
@@ -21,7 +20,9 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository.Config
+            return _repositoryFactory
+                .GetRepository()
+                .Config
                 .ToConfigurationResponse()
                 .AddLinks(linkProvider);
         }

@@ -10,11 +10,11 @@ namespace Git.Web.Apis
     [Route("branches")]
     public class BranchesController : Controller
     {
-        private readonly IRepository _repository;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public BranchesController(IRepository repository)
+        public BranchesController(IRepositoryFactory repositoryFactory)
         {
-            _repository = repository;
+            _repositoryFactory = repositoryFactory;
         }
 
         [HttpGet(Name = Rels.GetBranches)]
@@ -22,7 +22,9 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository.Branches
+            return _repositoryFactory
+                .GetRepository()
+                .Branches
                 .ToBranchesResponse()
                 .AddLinks(linkProvider);
         }
@@ -32,7 +34,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .FindBranch(branchName)
                 ?.ToBranchResponse()
                 .AddLinks(linkProvider);
@@ -43,7 +46,8 @@ namespace Git.Web.Apis
         {
             var linkProvider = this.GetLinkProvider();
 
-            return _repository
+            return _repositoryFactory
+                .GetRepository()
                 .FindBranch(branchName)
                 ?.Commits
                 .ToCommitsResponse()
