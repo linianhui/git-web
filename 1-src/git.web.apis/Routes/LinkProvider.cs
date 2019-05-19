@@ -23,14 +23,19 @@ namespace Git.Web.Apis.Routes
             return Link.From(Rels.DOCS_GET, GetHome().herf + docsPath);
         }
 
-        public Link GetRepositoryHome()
+        public Link GetRepository()
         {
-            return GetRepositoryHome(_repositoryName);
+            return GetRepository(_repositoryName);
         }
 
-        public Link GetRepositoryHome(string repositoryName)
+        public Link GetRepository(string repositoryName)
         {
-            return GetLink(Rels.REPOSITORY_HOME_GET, new { repositoryName });
+            return GetLink(Rels.REPOSITORY_GET, new { repositoryName });
+        }
+
+        public Link CloneRepository(string repositoryName, string repositoryUrl)
+        {
+            return GetLink(Rels.REPOSITORY_CLONE, new { repositoryName, repositoryUrl });
         }
 
         public Link GetConfiguration()

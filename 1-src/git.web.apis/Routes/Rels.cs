@@ -4,9 +4,11 @@ namespace Git.Web.Apis.Routes
     {
         public const string HOME_GET = "home.get";
 
-        public const string REPOSITORY_HOME_GET = "repository.home.get";
-
         public const string DOCS_GET = "docs.get";
+
+        public const string REPOSITORY_GET = "repository.get";
+
+        public const string REPOSITORY_CLONE = "repository.clone";
 
         public const string REPOSITORY_CONFIGURTION_GET = "repository.configuration.get";
 

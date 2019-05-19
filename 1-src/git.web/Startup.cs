@@ -1,6 +1,5 @@
 using Git.Web.Apis;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Converters;
 
@@ -18,11 +17,12 @@ namespace Git.Web
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IRepositoryFactory repositoryFactory)
         {
             app.UseDeveloperExceptionPage();
             app.UseApiDocs(".docs");
             app.UseMvc();
+            repositoryFactory.Reload();
         }
     }
 }

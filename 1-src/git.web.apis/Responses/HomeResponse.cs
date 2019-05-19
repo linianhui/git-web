@@ -18,8 +18,9 @@ namespace Git.Web.Apis.Responses
             AddLink(linkProvider.GetDocs(".docs"));
             foreach (var repositoryName in _repositoryNames)
             {
-                AddLink(linkProvider.GetRepositoryHome(repositoryName));
+                AddLink(linkProvider.GetRepository(repositoryName));
             }
+            AddLink(linkProvider.CloneRepository("git.web", "https://github.com/linianhui/git.web"));
             return this;
         }
     }
