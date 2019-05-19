@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("remotes")]
+    [Route("v1/{repositoryName}/remotes")]
     public class RemotesController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -17,12 +17,12 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.GetRemotes)]
-        public RemotesResponse GetRemotes()
+        public RemotesResponse GetRemotes(string repositoryName)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .Network
                 .Remotes
                 .ToRemotesResponse()
@@ -30,12 +30,12 @@ namespace Git.Web.Apis
         }
 
         [HttpGet("{remoteName}", Name = Rels.GetRemoteByName)]
-        public RemoteResponse GetRemoteByName(string remoteName)
+        public RemoteResponse GetRemoteByName(string repositoryName, string remoteName)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .FindRemote(remoteName)
                 ?.ToRemoteResponse()
                 .AddLinks(linkProvider);

@@ -1,8 +1,8 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using Git.Web.Apis;
 using LibGit2Sharp;
+using System.Linq;
 
 namespace Git.Web
 {
@@ -12,12 +12,17 @@ namespace Git.Web
 
         static RepositoryFactory()
         {
-            _repositorys.Add("local", new Repository(@"d:\.code\.lnh\git.web"));
+            _repositorys.Add("git.web", new Repository(@"d:\.code\.lnh\git.web"));
         }
 
-        public IRepository GetRepository()
+        public IRepository GetRepository(string repositoryName)
         {
-            return _repositorys.First().Value;
+            return _repositorys[repositoryName];
+        }
+
+        public ISet<string> GetRepositoryNames()
+        {
+            return new SortedSet<string>(_repositorys.Keys);
         }
     }
 }

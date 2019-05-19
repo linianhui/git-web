@@ -3,6 +3,7 @@ namespace Git.Web.Apis.Routes
     public static class Rels
     {
         public const string GetHome = "get.home";
+        public const string GetRepositoryHome = "get.repository_home";
         public const string GetDocs = "get.docs";
         public const string GetBlobById = "get.blob.by_id";
         public const string GetCommits = "get.commits";

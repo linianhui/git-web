@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("commits")]
+    [Route("v1/{repositoryName}/commits")]
     public class CommitsController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -17,24 +17,24 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.GetCommits)]
-        public CommitsResponse GetCommits()
+        public CommitsResponse GetCommits(string repositoryName)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .Commits
                 .ToCommitsResponse()
                 .AddLinks(linkProvider);
         }
 
         [HttpGet("{commitId}", Name = Rels.GetCommitById)]
-        public CommitResponse GetCommitById(string commitId)
+        public CommitResponse GetCommitById(string repositoryName, string commitId)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .Lookup<Commit>(commitId)
                 .ToCommitResponse()
                 .AddLinks(linkProvider);

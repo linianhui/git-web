@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("head")]
+    [Route("v1/{repositoryName}/head")]
     public class HeadController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -16,12 +16,12 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.GetHead)]
-        public BranchResponse GetHead()
+        public BranchResponse GetHead(string repositoryName)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .Head
                 .ToBranchResponse()
                 .AddLinks(linkProvider);

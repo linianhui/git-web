@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("tags")]
+    [Route("v1/{repositoryName}/tags")]
     public class TagsController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -17,24 +17,24 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.GetTags)]
-        public TagsResponse GetTags()
+        public TagsResponse GetTags(string repositoryName)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .Tags
                 .ToTagsResponse()
                 .AddLinks(linkProvider);
         }
 
         [HttpGet("{tagName}", Name = Rels.GetTagByName)]
-        public TagResponse GetTagByName(string tagName)
+        public TagResponse GetTagByName(string repositoryName, string tagName)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .FindTag(tagName)
                 ?.ToTagResponse()
                 .AddLinks(linkProvider);

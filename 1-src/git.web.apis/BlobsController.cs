@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("blobs")]
+    [Route("v1/{repositoryName}/blobs")]
     public class BlobsController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -17,12 +17,12 @@ namespace Git.Web.Apis
         }
 
         [HttpGet("{blobId}", Name = Rels.GetBlobById)]
-        public BlobResponse GetBlobById(string blobId)
+        public BlobResponse GetBlobById(string repositoryName, string blobId)
         {
-            var linkProvider = this.GetLinkProvider();
+            var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
-                .GetRepository()
+                .GetRepository(repositoryName)
                 .Lookup<Blob>(blobId)
                 .ToBlobResponse()
                 .AddLinks(linkProvider);

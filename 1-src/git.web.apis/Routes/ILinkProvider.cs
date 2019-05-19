@@ -6,6 +6,10 @@ namespace Git.Web.Apis.Routes
 
         Link GetDocs(string docsPath);
 
+        Link GetRepositoryHome();
+
+        Link GetRepositoryHome(string repositoryName);
+
         Link GetCommits();
 
         Link GetCommitById(string commitId);

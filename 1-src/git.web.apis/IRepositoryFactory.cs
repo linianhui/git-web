@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis
 {
     public interface IRepositoryFactory
     {
-        IRepository GetRepository();
+        ISet<string> GetRepositoryNames();
+
+        IRepository GetRepository(string repositoryName);
     }
 }
