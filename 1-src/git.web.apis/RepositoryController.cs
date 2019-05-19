@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}")]
+    [Route("v1/repository/{repositoryName}")]
     public class RepositoryController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;

@@ -1,43 +1,42 @@
 using Git.Web.Apis.Extensions;
-using Git.Web.Apis.LibGit2;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;
+using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}/remote")]
-    public class RemoteController : Controller
+    [Route("v1/repository/{repositoryName}/commit")]
+    public class RepositoryCommitController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public RemoteController(IRepositoryFactory repositoryFactory)
+        public RepositoryCommitController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.REPOSITORY_REMOTE_GET_LIST)]
-        public RemoteListResponse GetRemoteList(string repositoryName)
+        [HttpGet(Name = Rels.REPOSITORY_COMMIT_GET_LIST)]
+        public CommitListResponse GetCommitList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
-                .Network
-                .Remotes
-                .ToRemoteListResponse()
+                .Commits
+                .ToCommitListResponse()
                 .AddLinks(linkProvider);
         }
 
-        [HttpGet("{remoteName}", Name = Rels.REPOSITORY_REMOTE_GET_BY_NAME)]
-        public RemoteResponse GetRemoteByName(string repositoryName, string remoteName)
+        [HttpGet("{commitId}", Name = Rels.REPOSITORY_COMMIT_GET_BY_ID)]
+        public CommitResponse GetCommitById(string repositoryName, string commitId)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
-                .FindRemote(remoteName)
-                ?.ToRemoteResponse()
+                .Lookup<Commit>(commitId)
+                .ToCommitResponse()
                 .AddLinks(linkProvider);
         }
     }

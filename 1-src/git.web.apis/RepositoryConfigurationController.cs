@@ -1,30 +1,29 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.Responses;
 using Git.Web.Apis.Routes;
-using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}/blob")]
-    public class BlobController : Controller
+    [Route("v1/repository/{repositoryName}/configuration")]
+    public class RepositoryConfigurationController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public BlobController(IRepositoryFactory repositoryFactory)
+        public RepositoryConfigurationController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet("{blobId}", Name = Rels.REPOSITORY_BLOB_GET_BY_ID)]
-        public BlobResponse GetBlobById(string repositoryName, string blobId)
+        [HttpGet(Name = Rels.REPOSITORY_CONFIGURTION_GET)]
+        public ConfigurationResponse GetConfiguration(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
-                .Lookup<Blob>(blobId)
-                .ToBlobResponse()
+                .Config
+                .ToConfigurationResponse()
                 .AddLinks(linkProvider);
         }
     }
