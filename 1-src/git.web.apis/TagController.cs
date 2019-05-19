@@ -16,7 +16,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.GetTags)]
+        [HttpGet(Name = Rels.REPOSITORY_TAG_GET_LIST)]
         public TagListResponse GetTagList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
@@ -28,7 +28,7 @@ namespace Git.Web.Apis
                 .AddLinks(linkProvider);
         }
 
-        [HttpGet("{tagName}", Name = Rels.GetTagByName)]
+        [HttpGet("{tagName}", Name = Rels.REPOSITORY_TAG_GET_BY_NAME)]
         public TagResponse GetTagByName(string repositoryName, string tagName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);

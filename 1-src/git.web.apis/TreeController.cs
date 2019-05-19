@@ -16,7 +16,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet("{treeId}", Name = Rels.GetTreeById)]
+        [HttpGet("{treeId}", Name = Rels.REPOSITORY_TREE_GET_BY_ID)]
         public TreeResponse GetTreeById(string repositoryName, string treeId)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);

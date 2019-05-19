@@ -15,7 +15,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.GetHome)]
+        [HttpGet(Name = Rels.HOME_GET)]
         public HomeResponse Index()
         {
             var repositoryNames = _repositoryFactory.GetRepositoryNames();

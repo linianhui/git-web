@@ -15,7 +15,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.GetHead)]
+        [HttpGet(Name = Rels.REPOSITORY_HEAD_GET)]
         public BranchResponse GetHead(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);

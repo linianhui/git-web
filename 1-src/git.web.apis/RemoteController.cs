@@ -16,7 +16,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.GetRemotes)]
+        [HttpGet(Name = Rels.REPOSITORY_REMOTE_GET_LIST)]
         public RemoteListResponse GetRemoteList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
@@ -29,7 +29,7 @@ namespace Git.Web.Apis
                 .AddLinks(linkProvider);
         }
 
-        [HttpGet("{remoteName}", Name = Rels.GetRemoteByName)]
+        [HttpGet("{remoteName}", Name = Rels.REPOSITORY_REMOTE_GET_BY_NAME)]
         public RemoteResponse GetRemoteByName(string repositoryName, string remoteName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);

@@ -16,7 +16,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet("{blobId}", Name = Rels.GetBlobById)]
+        [HttpGet("{blobId}", Name = Rels.REPOSITORY_BLOB_GET_BY_ID)]
         public BlobResponse GetBlobById(string repositoryName, string blobId)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);

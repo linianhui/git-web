@@ -2,21 +2,37 @@ namespace Git.Web.Apis.Routes
 {
     public static class Rels
     {
-        public const string GetHome = "get.home";
-        public const string GetRepositoryHome = "get.repository_home";
-        public const string GetDocs = "get.docs";
-        public const string GetBlobById = "get.blob.by_id";
-        public const string GetCommits = "get.commits";
-        public const string GetCommitsByBranchName = "get.commits.by_branch_name";
-        public const string GetCommitById = "get.commit.by_id";
-        public const string GetTreeById = "get.tree.by_id";
-        public const string GetBranches = "get.branches";
-        public const string GetBranchByName = "get.branch.by_name";
-        public const string GetConfiguration = "get.configuration";
-        public const string GetTags = "get.tags";
-        public const string GetTagByName = "get.tag.by_name";
-        public const string GetHead = "get.head";
-        public const string GetRemotes = "get.remotes";
-        public const string GetRemoteByName = "get.remote.by_name";
+        public const string HOME_GET = "home.get";
+
+        public const string REPOSITORY_HOME_GET = "repository.home.get";
+
+        public const string DOCS_GET = "docs.get";
+
+        public const string REPOSITORY_CONFIGURTION_GET = "repository.configuration.get";
+
+        public const string REPOSITORY_HEAD_GET = "repository.head.get";
+
+        public const string REPOSITORY_BLOB_GET_BY_ID = "repository.blob.get_by_id";
+
+        public const string REPOSITORY_COMMIT_GET_LIST = "repository.commit.get_list";
+
+        public const string REPOSITORY_COMMIT_GET_LIST_BY_BRANCH_NAME = "repository.commit.get_list_by_branch_name";
+
+        public const string REPOSITORY_COMMIT_GET_BY_ID = "repository.commit.get_by_id";
+
+        public const string REPOSITORY_TREE_GET_BY_ID = "repository.tree.get_by_id";
+
+        public const string REPOSITORY_BRANCH_GET_LIST = "repository.branch.get_list";
+
+        public const string REPOSITORY_BRANCH_GET_BY_NAME = "repository.branch.get_by_name";
+
+        public const string REPOSITORY_TAG_GET_LIST = "repository.tag.get_list";
+
+        public const string REPOSITORY_TAG_GET_BY_NAME = "repository.tag.get_by_name";
+
+        public const string REPOSITORY_REMOTE_GET_LIST = "repository.remote.get_list";
+
+        public const string REPOSITORY_REMOTE_GET_BY_NAME = "repository.remote.get_by_name";
+
     }
 }

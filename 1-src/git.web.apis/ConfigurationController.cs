@@ -15,7 +15,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.GetConfiguration)]
+        [HttpGet(Name = Rels.REPOSITORY_CONFIGURTION_GET)]
         public ConfigurationResponse GetConfiguration(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);

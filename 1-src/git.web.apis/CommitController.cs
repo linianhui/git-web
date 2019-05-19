@@ -16,7 +16,7 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.GetCommits)]
+        [HttpGet(Name = Rels.REPOSITORY_COMMIT_GET_LIST)]
         public CommitListResponse GetCommitList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
@@ -28,7 +28,7 @@ namespace Git.Web.Apis
                 .AddLinks(linkProvider);
         }
 
-        [HttpGet("{commitId}", Name = Rels.GetCommitById)]
+        [HttpGet("{commitId}", Name = Rels.REPOSITORY_COMMIT_GET_BY_ID)]
         public CommitResponse GetCommitById(string repositoryName, string commitId)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
