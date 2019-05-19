@@ -10,7 +10,7 @@ namespace Git.Web.Apis.Routes
 
         public const string REPOSITORY_CLONE = "repository.clone";
 
-        public const string REPOSITORY_CONFIGURTION_GET = "repository.configuration.get";
+        public const string REPOSITORY_CONFIG_GET = "repository.config.get";
 
         public const string REPOSITORY_HEAD_GET = "repository.head.get";
 

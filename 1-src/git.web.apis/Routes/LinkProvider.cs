@@ -40,7 +40,7 @@ namespace Git.Web.Apis.Routes
 
         public Link GetConfiguration()
         {
-            return GetLink(Rels.REPOSITORY_CONFIGURTION_GET, new { repositoryName = _repositoryName });
+            return GetLink(Rels.REPOSITORY_CONFIG_GET, new { repositoryName = _repositoryName });
         }
 
         public Link GetTags()

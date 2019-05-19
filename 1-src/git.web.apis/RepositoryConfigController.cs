@@ -5,25 +5,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/repository/{repositoryName}/configuration")]
-    public class RepositoryConfigurationController : Controller
+    [Route("v1/repository/{repositoryName}/config")]
+    public class RepositoryConfigController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public RepositoryConfigurationController(IRepositoryFactory repositoryFactory)
+        public RepositoryConfigController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet(Name = Rels.REPOSITORY_CONFIGURTION_GET)]
-        public ConfigurationResponse GetConfiguration(string repositoryName)
+        [HttpGet(Name = Rels.REPOSITORY_CONFIG_GET)]
+        public ConfigResponse GetConfig(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Config
-                .ToConfigurationResponse()
+                .ToConfigResponse()
                 .AddLinks(linkProvider);
         }
     }
