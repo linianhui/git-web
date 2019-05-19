@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}/trees")]
-    public class TreesController : Controller
+    [Route("v1/{repositoryName}/tree")]
+    public class TreeController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public TreesController(IRepositoryFactory repositoryFactory)
+        public TreeController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }

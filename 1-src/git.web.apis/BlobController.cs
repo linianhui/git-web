@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}/blobs")]
-    public class BlobsController : Controller
+    [Route("v1/{repositoryName}/blob")]
+    public class BlobController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public BlobsController(IRepositoryFactory repositoryFactory)
+        public BlobController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }

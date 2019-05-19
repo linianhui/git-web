@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}/remotes")]
-    public class RemotesController : Controller
+    [Route("v1/{repositoryName}/remote")]
+    public class RemoteController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public RemotesController(IRepositoryFactory repositoryFactory)
+        public RemoteController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }

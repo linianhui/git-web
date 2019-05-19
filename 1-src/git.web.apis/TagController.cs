@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}/tags")]
-    public class TagsController : Controller
+    [Route("v1/{repositoryName}/tag")]
+    public class TagController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public TagsController(IRepositoryFactory repositoryFactory)
+        public TagController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }

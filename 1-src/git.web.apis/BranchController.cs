@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/{repositoryName}/branches")]
-    public class BranchesController : Controller
+    [Route("v1/{repositoryName}/branch")]
+    public class BranchController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
 
-        public BranchesController(IRepositoryFactory repositoryFactory)
+        public BranchController(IRepositoryFactory repositoryFactory)
         {
             _repositoryFactory = repositoryFactory;
         }
@@ -40,7 +40,7 @@ namespace Git.Web.Apis
                 .AddLinks(linkProvider);
         }
 
-        [HttpGet("{branchName}/commits", Name = Rels.GetCommitsByBranchName)]
+        [HttpGet("{branchName}/commit", Name = Rels.GetCommitsByBranchName)]
         public CommitsResponse GetCommitsByBranchName(string repositoryName, string branchName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
