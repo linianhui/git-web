@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/repository/{repositoryName}/remote")]
+    [Route("v1/repository/{repository_name}/remote")]
     public class RepositoryRemoteController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -17,26 +17,26 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.REPOSITORY_REMOTE_GET_LIST)]
-        public RepositoryRemoteListResponse GetRemoteList(string repositoryName)
+        public RepositoryRemoteListResponse GetRemoteList(string repository_name)
         {
-            var linkProvider = this.GetLinkProvider(repositoryName);
+            var linkProvider = this.GetLinkProvider(repository_name);
 
             return _repositoryFactory
-                .GetRepository(repositoryName)
+                .GetRepository(repository_name)
                 .Network
                 .Remotes
                 .ToRepositoryRemoteListResponse()
                 .AddLinks(linkProvider);
         }
 
-        [HttpGet("{remoteName}", Name = Rels.REPOSITORY_REMOTE_GET_BY_NAME)]
-        public RepositoryRemoteResponse GetRemoteByName(string repositoryName, string remoteName)
+        [HttpGet("{remote_name}", Name = Rels.REPOSITORY_REMOTE_GET_BY_NAME)]
+        public RepositoryRemoteResponse GetRemoteByName(string repository_name, string remote_name)
         {
-            var linkProvider = this.GetLinkProvider(repositoryName);
+            var linkProvider = this.GetLinkProvider(repository_name);
 
             return _repositoryFactory
-                .GetRepository(repositoryName)
-                .FindRemote(remoteName)
+                .GetRepository(repository_name)
+                .FindRemote(remote_name)
                 ?.ToRepositoryRemoteResponse()
                 .AddLinks(linkProvider);
         }

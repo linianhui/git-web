@@ -8,34 +8,34 @@ namespace Git.Web.Apis.Routes
 
         Link GetRepository();
 
-        Link GetRepository(string repositoryName);
+        Link GetRepository(string repository_name);
 
-        Link CloneRepository(string repositoryName, string repositoryUrl);
+        Link CloneRepository(string repository_name, string repository_url);
 
         Link GetCommits();
 
-        Link GetCommitById(string commitId);
+        Link GetCommitById(string commit_id);
 
-        Link GetTreeById(string treeId);
+        Link GetTreeById(string tree_id);
 
-        Link GetBlobById(string blobId);
+        Link GetBlobById(string blob_id);
 
         Link GetBranches();
 
-        Link GetCommitsByBranchName(string branchName);
+        Link GetCommitsByBranchName(string branch_name);
 
-        Link GetBranchByName(string branchName);
+        Link GetBranchByName(string branch_name);
 
         Link GetConfiguration();
 
         Link GetTags();
 
-        Link GetTagByName(string tagName);
+        Link GetTagByName(string tag_name);
 
         Link GetHead();
 
         Link GetRemotes();
 
-        Link GetRemoteByName(string remoteName);
+        Link GetRemoteByName(string remote_name);
     }
 }

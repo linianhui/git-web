@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/repository/{repositoryName}/config")]
+    [Route("v1/repository/{repository_name}/config")]
     public class RepositoryConfigController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -16,12 +16,12 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.REPOSITORY_CONFIG_GET)]
-        public RepositoryConfigResponse GetConfig(string repositoryName)
+        public RepositoryConfigResponse GetConfig(string repository_name)
         {
-            var linkProvider = this.GetLinkProvider(repositoryName);
+            var linkProvider = this.GetLinkProvider(repository_name);
 
             return _repositoryFactory
-                .GetRepository(repositoryName)
+                .GetRepository(repository_name)
                 .Config
                 .ToRepositoryConfigResponse()
                 .AddLinks(linkProvider);

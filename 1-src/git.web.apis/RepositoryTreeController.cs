@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
 {
-    [Route("v1/repository/{repositoryName}/tree")]
+    [Route("v1/repository/{repository_name}/tree")]
     public class RepositoryTreeController : Controller
     {
         private readonly IRepositoryFactory _repositoryFactory;
@@ -16,14 +16,14 @@ namespace Git.Web.Apis
             _repositoryFactory = repositoryFactory;
         }
 
-        [HttpGet("{treeId}", Name = Rels.REPOSITORY_TREE_GET_BY_ID)]
-        public RepositoryTreeResponse GetTreeById(string repositoryName, string treeId)
+        [HttpGet("{tree_id}", Name = Rels.REPOSITORY_TREE_GET_BY_ID)]
+        public RepositoryTreeResponse GetTreeById(string repository_name, string tree_id)
         {
-            var linkProvider = this.GetLinkProvider(repositoryName);
+            var linkProvider = this.GetLinkProvider(repository_name);
 
             return _repositoryFactory
-                .GetRepository(repositoryName)
-                .Lookup<Tree>(treeId)
+                .GetRepository(repository_name)
+                .Lookup<Tree>(tree_id)
                 .ToRepositoryTreeResponse()
                 .AddLinks(linkProvider);
         }
