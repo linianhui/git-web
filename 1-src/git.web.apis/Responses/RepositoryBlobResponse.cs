@@ -5,9 +5,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class BlobResponse : LinkResponse<BlobResponse>
+    public class RepositoryBlobResponse : LinkResponse<RepositoryBlobResponse>
     {
-        private BlobResponse()
+        private RepositoryBlobResponse()
         {
         }
 
@@ -19,15 +19,15 @@ namespace Git.Web.Apis.Responses
 
         public string content_text { get; private set; }
 
-        public override BlobResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryBlobResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetBlobById(id));
             return this;
         }
 
-        public static BlobResponse From(Blob blob)
+        public static RepositoryBlobResponse From(Blob blob)
         {
-            var blobResponse = new BlobResponse
+            var blobResponse = new RepositoryBlobResponse
             {
                 id = blob.Sha,
                 size = blob.Size,
@@ -40,7 +40,7 @@ namespace Git.Web.Apis.Responses
             return blobResponse;
         }
 
-        public static List<BlobResponse> From(IEnumerable<Blob> blobs)
+        public static List<RepositoryBlobResponse> From(IEnumerable<Blob> blobs)
         {
             return blobs.Select(From).ToList();
         }

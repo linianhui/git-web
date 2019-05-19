@@ -17,14 +17,14 @@ namespace Git.Web.Apis
         }
 
         [HttpGet("{treeId}", Name = Rels.REPOSITORY_TREE_GET_BY_ID)]
-        public TreeResponse GetTreeById(string repositoryName, string treeId)
+        public RepositoryTreeResponse GetTreeById(string repositoryName, string treeId)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Lookup<Tree>(treeId)
-                .ToTreeResponse()
+                .ToRepositoryTreeResponse()
                 .AddLinks(linkProvider);
         }
     }

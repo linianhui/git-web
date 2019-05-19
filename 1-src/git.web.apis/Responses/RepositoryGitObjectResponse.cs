@@ -6,9 +6,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public sealed class GitObjectResponse
+    public sealed class RepositoryGitObjectResponse
     {
-        private GitObjectResponse()
+        private RepositoryGitObjectResponse()
         {
         }
 
@@ -18,7 +18,7 @@ namespace Git.Web.Apis.Responses
 
         public GitObjectType type { get; private set; }
 
-        public GitObjectResponse AddLinks(ILinkProvider linkProvider)
+        public RepositoryGitObjectResponse AddLinks(ILinkProvider linkProvider)
         {
             switch (type)
             {
@@ -43,16 +43,16 @@ namespace Git.Web.Apis.Responses
             return this;
         }
 
-        public static GitObjectResponse From(GitObject gitObject)
+        public static RepositoryGitObjectResponse From(GitObject gitObject)
         {
-            return new GitObjectResponse
+            return new RepositoryGitObjectResponse
             {
                 id = gitObject.Sha,
                 type = GitObjectTypes.GetGitObjectType(gitObject)
             };
         }
 
-        public static List<GitObjectResponse> From(IEnumerable<GitObject> gitObjects)
+        public static List<RepositoryGitObjectResponse> From(IEnumerable<GitObject> gitObjects)
         {
             return gitObjects.Select(From).ToList();
         }

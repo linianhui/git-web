@@ -16,14 +16,14 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.REPOSITORY_HEAD_GET)]
-        public BranchResponse GetHead(string repositoryName)
+        public RepositoryBranchResponse GetHead(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Head
-                .ToBranchResponse()
+                .ToRepositoryBranchResponse()
                 .AddLinks(linkProvider);
         }
     }

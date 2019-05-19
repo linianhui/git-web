@@ -17,26 +17,26 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.REPOSITORY_COMMIT_GET_LIST)]
-        public CommitListResponse GetCommitList(string repositoryName)
+        public RepositoryCommitListResponse GetCommitList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Commits
-                .ToCommitListResponse()
+                .ToRepositoryCommitListResponse()
                 .AddLinks(linkProvider);
         }
 
         [HttpGet("{commitId}", Name = Rels.REPOSITORY_COMMIT_GET_BY_ID)]
-        public CommitResponse GetCommitById(string repositoryName, string commitId)
+        public RepositoryCommitResponse GetCommitById(string repositoryName, string commitId)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Lookup<Commit>(commitId)
-                .ToCommitResponse()
+                .ToRepositoryCommitResponse()
                 .AddLinks(linkProvider);
         }
     }

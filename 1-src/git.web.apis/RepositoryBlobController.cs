@@ -17,14 +17,14 @@ namespace Git.Web.Apis
         }
 
         [HttpGet("{blobId}", Name = Rels.REPOSITORY_BLOB_GET_BY_ID)]
-        public BlobResponse GetBlobById(string repositoryName, string blobId)
+        public RepositoryBlobResponse GetBlobById(string repositoryName, string blobId)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Lookup<Blob>(blobId)
-                .ToBlobResponse()
+                .ToRepositoryBlobResponse()
                 .AddLinks(linkProvider);
         }
     }

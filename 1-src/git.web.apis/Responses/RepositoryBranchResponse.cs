@@ -6,9 +6,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class BranchResponse : LinkResponse<BranchResponse>
+    public class RepositoryBranchResponse : LinkResponse<RepositoryBranchResponse>
     {
-        private BranchResponse()
+        private RepositoryBranchResponse()
         {
         }
 
@@ -26,7 +26,7 @@ namespace Git.Web.Apis.Responses
 
         public bool is_tracking { get; private set; }
 
-        public GitObjectResponse tip { get; set; }
+        public RepositoryGitObjectResponse tip { get; set; }
 
         public object tracking_details { get; set; }
 
@@ -34,7 +34,7 @@ namespace Git.Web.Apis.Responses
 
         public object reference { get; set; }
 
-        public override BranchResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryBranchResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetBranchByName(friendly_name));
             AddLink(linkProvider.GetCommitsByBranchName(friendly_name));
@@ -42,9 +42,9 @@ namespace Git.Web.Apis.Responses
             return this;
         }
 
-        public static BranchResponse From(Branch branch)
+        public static RepositoryBranchResponse From(Branch branch)
         {
-            return new BranchResponse
+            return new RepositoryBranchResponse
             {
                 canonical_name = branch.CanonicalName,
                 friendly_name = branch.FriendlyName,
@@ -52,7 +52,7 @@ namespace Git.Web.Apis.Responses
                 is_remote = branch.IsRemote,
                 is_tracking = branch.IsTracking,
                 remote_name = branch.RemoteName,
-                tip = branch.Tip.ToGitObjectResponse(),
+                tip = branch.Tip.ToRepositoryGitObjectResponse(),
                 upstream_branch_canonical_name = branch.UpstreamBranchCanonicalName,
                 //reference = branch.Reference,
                 //tracked_branch = branch.TrackedBranch,
@@ -60,7 +60,7 @@ namespace Git.Web.Apis.Responses
             };
         }
 
-        public static List<BranchResponse> From(IEnumerable<Branch> branchs)
+        public static List<RepositoryBranchResponse> From(IEnumerable<Branch> branchs)
         {
             return branchs.Select(From).ToList();
         }

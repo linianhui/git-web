@@ -3,9 +3,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class TagAnnotationResponse
+    public class RepositoryTagAnnotationResponse
     {
-        private TagAnnotationResponse()
+        private RepositoryTagAnnotationResponse()
         {
         }
 
@@ -15,23 +15,23 @@ namespace Git.Web.Apis.Responses
 
         public string name { get; private set; }
 
-        public SignatureResponse tagger { get; private set; }
+        public RepositorySignatureResponse tagger { get; private set; }
 
         public GitObject target { get; private set; }
 
-        public static TagAnnotationResponse From(TagAnnotation tagAnnotation)
+        public static RepositoryTagAnnotationResponse From(TagAnnotation tagAnnotation)
         {
             if (tagAnnotation == null)
             {
                 return null;
             }
 
-            return new TagAnnotationResponse
+            return new RepositoryTagAnnotationResponse
             {
                 id = tagAnnotation.Sha,
                 message = tagAnnotation.Message,
                 name = tagAnnotation.Name,
-                tagger = tagAnnotation.Tagger.ToSignatureResponse(),
+                tagger = tagAnnotation.Tagger.ToRepositorySignatureResponse(),
                 //target = tagAnnotation.Target
             };
         }

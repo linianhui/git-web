@@ -6,9 +6,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class RemoteResponse : LinkResponse<RemoteResponse>
+    public class RepositoryRemoteResponse : LinkResponse<RepositoryRemoteResponse>
     {
-        private RemoteResponse()
+        private RepositoryRemoteResponse()
         {
         }
 
@@ -22,34 +22,34 @@ namespace Git.Web.Apis.Responses
 
         public bool automatically_prune_on_fetch { get; private set; }
 
-        public IList<RefSpecResponse> fetch_ref_specs { get; set; }
+        public IList<RepositoryRefSpecResponse> fetch_ref_specs { get; set; }
 
-        public IList<RefSpecResponse> push_ref_specs { get; set; }
+        public IList<RepositoryRefSpecResponse> push_ref_specs { get; set; }
 
-        public IList<RefSpecResponse> ref_apecs { get; set; }
+        public IList<RepositoryRefSpecResponse> ref_apecs { get; set; }
 
-        public override RemoteResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryRemoteResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetRemoteByName(name));
             return this;
         }
 
-        public static RemoteResponse From(Remote remote)
+        public static RepositoryRemoteResponse From(Remote remote)
         {
-            return new RemoteResponse
+            return new RepositoryRemoteResponse
             {
                 name = remote.Name,
                 automatically_prune_on_fetch = remote.AutomaticallyPruneOnFetch,
-                ref_apecs = remote.RefSpecs.ToRefSpecResponses(),
-                fetch_ref_specs = remote.FetchRefSpecs.ToRefSpecResponses(),
-                push_ref_specs = remote.PushRefSpecs.ToRefSpecResponses(),
+                ref_apecs = remote.RefSpecs.ToRepositoryRefSpecResponses(),
+                fetch_ref_specs = remote.FetchRefSpecs.ToRepositoryRefSpecResponses(),
+                push_ref_specs = remote.PushRefSpecs.ToRepositoryRefSpecResponses(),
                 push_url = remote.PushUrl,
                 tag_fetch_mode = remote.TagFetchMode,
                 url = remote.Url
             };
         }
 
-        public static List<RemoteResponse> From(IEnumerable<Remote> remotes)
+        public static List<RepositoryRemoteResponse> From(IEnumerable<Remote> remotes)
         {
             return remotes.Select(From).ToList();
         }

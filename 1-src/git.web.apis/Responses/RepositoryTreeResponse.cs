@@ -6,9 +6,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class TreeResponse : LinkResponse<TreeResponse>
+    public class RepositoryTreeResponse : LinkResponse<RepositoryTreeResponse>
     {
-        private TreeResponse()
+        private RepositoryTreeResponse()
         {
         }
 
@@ -16,26 +16,26 @@ namespace Git.Web.Apis.Responses
 
         public int count { get; private set; }
 
-        public List<TreeEntryResponse> entries { get; private set; }
+        public List<RepositoryTreeEntryResponse> entries { get; private set; }
 
-        public override TreeResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryTreeResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetTreeById(id));
             entries.ForEach(_ => _.AddLinks(linkProvider));
             return this;
         }
 
-        public static TreeResponse From(Tree tree)
+        public static RepositoryTreeResponse From(Tree tree)
         {
-            return new TreeResponse
+            return new RepositoryTreeResponse
             {
                 id = tree.Sha,
                 count = tree.Count,
-                entries = tree.ToTreeEntryResponses()
+                entries = tree.ToRepositoryTreeEntryResponses()
             };
         }
 
-        public static List<TreeResponse> From(IEnumerable<Tree> trees)
+        public static List<RepositoryTreeResponse> From(IEnumerable<Tree> trees)
         {
             return trees.Select(From).ToList();
         }

@@ -5,24 +5,24 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public sealed class ConfigResponse : LinkResponse<ConfigResponse>
+    public sealed class RepositoryConfigResponse : LinkResponse<RepositoryConfigResponse>
     {
-        private ConfigResponse()
+        private RepositoryConfigResponse()
         {
         }
 
         public IDictionary<string, IDictionary<ConfigurationLevel, string[]>> items { get; private set; }
 
-        public override ConfigResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryConfigResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetConfiguration());
             return this;
         }
 
-        public static ConfigResponse From(Configuration configuration)
+        public static RepositoryConfigResponse From(Configuration configuration)
         {
             ;
-            return new ConfigResponse
+            return new RepositoryConfigResponse
             {
                 items = configuration
                     .GroupBy(k => k.Key)

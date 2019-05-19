@@ -4,9 +4,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class RefSpecResponse
+    public class RepositoryRefSpecResponse
     {
-        private RefSpecResponse()
+        private RepositoryRefSpecResponse()
         {
         }
 
@@ -20,9 +20,9 @@ namespace Git.Web.Apis.Responses
 
         public string specification { get; private set; }
 
-        public static RefSpecResponse From(RefSpec refSpec)
+        public static RepositoryRefSpecResponse From(RefSpec refSpec)
         {
-            return new RefSpecResponse
+            return new RepositoryRefSpecResponse
             {
                 destination = refSpec.Destination,
                 direction = refSpec.Direction,
@@ -32,7 +32,7 @@ namespace Git.Web.Apis.Responses
             };
         }
 
-        public static List<RefSpecResponse> From(IEnumerable<RefSpec> refSpecs)
+        public static List<RepositoryRefSpecResponse> From(IEnumerable<RefSpec> refSpecs)
         {
             return refSpecs.Select(From).ToList();
         }

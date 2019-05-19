@@ -17,26 +17,26 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.REPOSITORY_TAG_GET_LIST)]
-        public TagListResponse GetTagList(string repositoryName)
+        public RepositoryTagListResponse GetTagList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Tags
-                .ToTagListResponse()
+                .ToRepositoryTagListResponse()
                 .AddLinks(linkProvider);
         }
 
         [HttpGet("{tagName}", Name = Rels.REPOSITORY_TAG_GET_BY_NAME)]
-        public TagResponse GetTagByName(string repositoryName, string tagName)
+        public RepositoryTagResponse GetTagByName(string repositoryName, string tagName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .FindTag(tagName)
-                ?.ToTagResponse()
+                ?.ToRepositoryTagResponse()
                 .AddLinks(linkProvider);
         }
     }

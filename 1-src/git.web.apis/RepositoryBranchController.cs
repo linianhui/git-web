@@ -17,31 +17,31 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.REPOSITORY_BRANCH_GET_LIST)]
-        public BranchListResponse GetBranchList(string repositoryName)
+        public RepositoryBranchListResponse GetBranchList(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Branches
-                .ToBranchListResponse()
+                .ToRepositoryBranchListResponse()
                 .AddLinks(linkProvider);
         }
 
         [HttpGet("{branchName}", Name = Rels.REPOSITORY_BRANCH_GET_BY_NAME)]
-        public BranchResponse GetBranchByName(string repositoryName, string branchName)
+        public RepositoryBranchResponse GetBranchByName(string repositoryName, string branchName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .FindBranch(branchName)
-                ?.ToBranchResponse()
+                ?.ToRepositoryBranchResponse()
                 .AddLinks(linkProvider);
         }
 
         [HttpGet("{branchName}/commit", Name = Rels.REPOSITORY_COMMIT_GET_LIST_BY_BRANCH_NAME)]
-        public CommitListResponse GetCommitListByBranchName(string repositoryName, string branchName)
+        public RepositoryCommitListResponse GetCommitListByBranchName(string repositoryName, string branchName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
@@ -49,7 +49,7 @@ namespace Git.Web.Apis
                 .GetRepository(repositoryName)
                 .FindBranch(branchName)
                 ?.Commits
-                .ToCommitListResponse()
+                .ToRepositoryCommitListResponse()
                 .AddLinks(linkProvider);
         }
     }

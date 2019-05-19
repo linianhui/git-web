@@ -16,14 +16,14 @@ namespace Git.Web.Apis
         }
 
         [HttpGet(Name = Rels.REPOSITORY_CONFIG_GET)]
-        public ConfigResponse GetConfig(string repositoryName)
+        public RepositoryConfigResponse GetConfig(string repositoryName)
         {
             var linkProvider = this.GetLinkProvider(repositoryName);
 
             return _repositoryFactory
                 .GetRepository(repositoryName)
                 .Config
-                .ToConfigResponse()
+                .ToRepositoryConfigResponse()
                 .AddLinks(linkProvider);
         }
     }

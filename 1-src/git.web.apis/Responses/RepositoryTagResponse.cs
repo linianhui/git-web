@@ -6,9 +6,9 @@ using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
 {
-    public class TagResponse : LinkResponse<TagResponse>
+    public class RepositoryTagResponse : LinkResponse<RepositoryTagResponse>
     {
-        private TagResponse()
+        private RepositoryTagResponse()
         {
         }
 
@@ -16,7 +16,7 @@ namespace Git.Web.Apis.Responses
 
         public string friendly_name { get; private set; }
 
-        public TagAnnotationResponse annotation { get; private set; }
+        public RepositoryTagAnnotationResponse annotation { get; private set; }
 
         public bool is_annotated { get; private set; }
 
@@ -26,19 +26,19 @@ namespace Git.Web.Apis.Responses
 
         public object peeled_target { get; set; }
 
-        public override TagResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryTagResponse AddLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetTagByName(friendly_name));
             return this;
         }
 
-        public static TagResponse From(Tag tag)
+        public static RepositoryTagResponse From(Tag tag)
         {
-            return new TagResponse
+            return new RepositoryTagResponse
             {
                 canonical_name = tag.CanonicalName,
                 friendly_name = tag.FriendlyName,
-                annotation = tag.Annotation.ToTagAnnotationResponse(),
+                annotation = tag.Annotation.ToRepositoryTagAnnotationResponse(),
                 is_annotated = tag.IsAnnotated,
                 //peeled_target = tag.PeeledTarget,
                 //reference = tag.Reference,
@@ -46,7 +46,7 @@ namespace Git.Web.Apis.Responses
             };
         }
 
-        public static List<TagResponse> From(IEnumerable<Tag> tags)
+        public static List<RepositoryTagResponse> From(IEnumerable<Tag> tags)
         {
             return tags.Select(From).ToList();
         }
