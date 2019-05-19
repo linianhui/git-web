@@ -1,0 +1,11 @@
+version: "3.0"
+
+
+services:
+
+  api:
+    build: 
+      context: ./1-src/
+      dockerfile: git.web.dockerfile
+    ports:
+      - "9001:80"
