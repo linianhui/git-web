@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Git.Web.Apis.Extensions;
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
@@ -13,10 +13,10 @@ namespace Git.Web.Apis.Responses
 
         public List<RepositoryCommitResponse> commits { get; private set; }
 
-        public override RepositoryCommitListResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryCommitListResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetCommits());
-            commits.ForEach(_ => _.AddLinks(linkProvider));
+            commits.ForEach(_ => _.WithLinks(linkProvider));
             return this;
         }
 

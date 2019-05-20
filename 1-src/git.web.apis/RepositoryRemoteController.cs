@@ -1,7 +1,7 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.LibGit2;
+using Git.Web.Apis.Links;
 using Git.Web.Apis.Responses;
-using Git.Web.Apis.Routes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -26,7 +26,7 @@ namespace Git.Web.Apis
                 .Network
                 .Remotes
                 .ToRepositoryRemoteListResponse()
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
 
         [HttpGet("{remote_name}", Name = Rels.REPOSITORY_REMOTE_GET_BY_NAME)]
@@ -38,7 +38,7 @@ namespace Git.Web.Apis
                 .GetRepository(repository_name)
                 .FindRemote(remote_name)
                 ?.ToRepositoryRemoteResponse()
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
     }
 }

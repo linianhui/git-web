@@ -1,7 +1,7 @@
 using Git.Web.Apis.Extensions;
 using Git.Web.Apis.LibGit2;
+using Git.Web.Apis.Links;
 using Git.Web.Apis.Responses;
-using Git.Web.Apis.Routes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -25,7 +25,7 @@ namespace Git.Web.Apis
                 .GetRepository(repository_name)
                 .Tags
                 .ToRepositoryTagListResponse()
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
 
         [HttpGet("{tag_name}", Name = Rels.REPOSITORY_TAG_GET_BY_NAME)]
@@ -37,7 +37,7 @@ namespace Git.Web.Apis
                 .GetRepository(repository_name)
                 .FindTag(tag_name)
                 ?.ToRepositoryTagResponse()
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
     }
 }

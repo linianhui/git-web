@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
@@ -34,7 +34,7 @@ namespace Git.Web.Apis.Responses
 
         public object reference { get; set; }
 
-        public override RepositoryBranchResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryBranchResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetBranchByName(friendly_name));
             AddLink(linkProvider.GetCommitsByBranchName(friendly_name));

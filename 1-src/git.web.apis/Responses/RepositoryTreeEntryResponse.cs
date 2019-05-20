@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Git.Web.Apis.Extensions;
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses

@@ -1,4 +1,4 @@
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis.Extensions

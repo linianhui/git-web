@@ -1,4 +1,4 @@
-namespace Git.Web.Apis.Routes
+namespace Git.Web.Apis.Links
 {
     public sealed class Link
     {
@@ -21,11 +21,7 @@ namespace Git.Web.Apis.Routes
 
         public static Link Self(string herf)
         {
-            return new Link
-            {
-                rel = "self",
-                herf = herf
-            };
+            return From("self", herf);
         }
     }
 }

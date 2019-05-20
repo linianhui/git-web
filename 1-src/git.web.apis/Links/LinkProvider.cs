@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Git.Web.Apis.Routes
+namespace Git.Web.Apis.Links
 {
     public class LinkProvider : ILinkProvider
     {

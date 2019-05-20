@@ -1,6 +1,5 @@
-using System.Collections.Generic;
+using Git.Web.Apis.Links;
 using Git.Web.Apis.Responses;
-using Git.Web.Apis.Routes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -21,7 +20,7 @@ namespace Git.Web.Apis
             var repositoryNames = _repositoryFactory.GetRepositoryNames();
             var linkProvider = new LinkProvider(Url, null);
             return new HomeResponse(repositoryNames)
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
     }
 }

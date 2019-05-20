@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Git.Web.Apis.Extensions;
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
@@ -13,10 +13,10 @@ namespace Git.Web.Apis.Responses
 
         public List<RepositoryTagResponse> tags { get; private set; }
 
-        public override RepositoryTagListResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryTagListResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetTags());
-            tags.ForEach(_ => _.AddLinks(linkProvider));
+            tags.ForEach(_ => _.WithLinks(linkProvider));
             return this;
         }
 

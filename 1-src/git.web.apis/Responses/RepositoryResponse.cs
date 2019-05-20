@@ -1,10 +1,10 @@
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 
 namespace Git.Web.Apis.Responses
 {
     public class RepositoryResponse : LinkResponse<RepositoryResponse>
     {
-        public override RepositoryResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetHome());
             AddLink(linkProvider.GetDocs(".docs"));

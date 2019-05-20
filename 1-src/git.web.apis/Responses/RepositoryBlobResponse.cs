@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 using LibGit2Sharp;
 
 namespace Git.Web.Apis.Responses
@@ -19,7 +19,7 @@ namespace Git.Web.Apis.Responses
 
         public string content_text { get; private set; }
 
-        public override RepositoryBlobResponse AddLinks(ILinkProvider linkProvider)
+        public override RepositoryBlobResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetBlobById(id));
             return this;

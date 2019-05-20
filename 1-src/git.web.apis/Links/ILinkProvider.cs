@@ -1,4 +1,4 @@
-namespace Git.Web.Apis.Routes
+namespace Git.Web.Apis.Links
 {
     public interface ILinkProvider
     {

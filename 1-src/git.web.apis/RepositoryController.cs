@@ -1,6 +1,6 @@
 using Git.Web.Apis.Extensions;
+using Git.Web.Apis.Links;
 using Git.Web.Apis.Responses;
-using Git.Web.Apis.Routes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Git.Web.Apis
@@ -21,7 +21,7 @@ namespace Git.Web.Apis
             var linkProvider = this.GetLinkProvider(repository_name);
 
             return new RepositoryResponse()
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
 
         [HttpGet("clone", Name = Rels.REPOSITORY_CLONE)]
@@ -32,7 +32,7 @@ namespace Git.Web.Apis
             _repositoryFactory.CloneRepository(repository_name, repository_url);
 
             return new RepositoryResponse()
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Git.Web.Apis.Links;
 
-namespace Git.Web.Apis.Routes
+namespace Git.Web.Apis.Responses
 {
     public abstract class LinkResponse<TResponse>
     {
@@ -21,6 +22,6 @@ namespace Git.Web.Apis.Routes
             _links.Add(link);
         }
 
-        public abstract TResponse AddLinks(ILinkProvider linkProvider);
+        public abstract TResponse WithLinks(ILinkProvider linkProvider);
     }
 }

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Git.Web.Apis.Routes;
+using Git.Web.Apis.Links;
 
 namespace Git.Web.Apis.Responses
 {
@@ -12,7 +12,7 @@ namespace Git.Web.Apis.Responses
             _repositoryNames = repositoryNames;
         }
 
-        public override HomeResponse AddLinks(ILinkProvider linkProvider)
+        public override HomeResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetHome());
             AddLink(linkProvider.GetDocs(".docs"));

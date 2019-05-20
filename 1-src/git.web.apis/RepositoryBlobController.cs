@@ -1,6 +1,6 @@
 using Git.Web.Apis.Extensions;
+using Git.Web.Apis.Links;
 using Git.Web.Apis.Responses;
-using Git.Web.Apis.Routes;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +25,7 @@ namespace Git.Web.Apis
                 .GetRepository(repository_name)
                 .Lookup<Blob>(blob_id)
                 .ToRepositoryBlobResponse()
-                .AddLinks(linkProvider);
+                .WithLinks(linkProvider);
         }
     }
 }
