@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "git.web", "1-src\git.web\git.web.csproj", "{5334E4EA-4780-45FF-B072-81F8B02734D3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "git.web.apis", "1-src\git.web.apis\git.web.apis.csproj", "{CCDB2F76-1C1D-49F1-8420-BEEFABF6A9B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "git.web.docs", "1-src\git.web.docs\git.web.docs.csproj", "{B2058549-3E0A-4FFE-8013-3FDED135AF18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-src", "1-src", "{09539D21-0501-485B-A8EC-9CB9C23DBABB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5334E4EA-4780-45FF-B072-81F8B02734D3} = {09539D21-0501-485B-A8EC-9CB9C23DBABB}
+		{CCDB2F76-1C1D-49F1-8420-BEEFABF6A9B9} = {09539D21-0501-485B-A8EC-9CB9C23DBABB}
+		{B2058549-3E0A-4FFE-8013-3FDED135AF18} = {09539D21-0501-485B-A8EC-9CB9C23DBABB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10FBBCE7-F600-43AF-BEDF-432F7A920AC9}
