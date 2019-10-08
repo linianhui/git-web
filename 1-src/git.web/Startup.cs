@@ -1,7 +1,7 @@
+using System.Text.Json.Serialization;
 using Git.Web.Apis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Converters;
 
 namespace Git.Web
 {
@@ -11,10 +11,8 @@ namespace Git.Web
         {
             services.AddApiDocs();
             services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
-            services.AddMvc().AddJsonOptions(_ =>
-            {
-                _.SerializerSettings.Converters.Add(new StringEnumConverter());
-            });
+            services.AddMvc(_ => _.EnableEndpointRouting = false)
+                .AddJsonOptions(_ => _.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         }
 
         public void Configure(IApplicationBuilder app, IRepositoryFactory repositoryFactory)

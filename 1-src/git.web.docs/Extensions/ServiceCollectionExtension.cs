@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 // ReSharper disable CheckNamespace
 
@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             @this.AddSwaggerGen(_ =>
             {
-                _.SwaggerDoc("api", new Info { Title = "API Docs" });
+                _.SwaggerDoc("api", new OpenApiInfo { Title = "API Docs" });
                 foreach (var filePath in GetXmlCommentFilePaths())
                 {
                     _.IncludeXmlComments(filePath);
