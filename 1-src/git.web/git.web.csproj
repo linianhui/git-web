@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\git.web.apis\git.web.apis.csproj" />
     <ProjectReference Include="..\git.web.docs\git.web.docs.csproj" />
   </ItemGroup>
