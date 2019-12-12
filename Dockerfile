@@ -2,11 +2,11 @@
 # https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/Dockerfile.alpine-x64
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS builder
 
-COPY . /src
+COPY . /build
 
-WORKDIR /src
+WORKDIR /build
 
-RUN dotnet publish ./git.web/git.web.csproj --output /publish
+RUN dotnet publish /build/1-src/git.web/git.web.csproj --output /publish
 
 
 
