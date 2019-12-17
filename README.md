@@ -1,6 +1,12 @@
 # Git internal object web explore api
 base on https://github.com/libgit2/libgit2sharp
 
+# CI
+
+| CI Service     | Platform | Test Status                                 |
+| -------------- | -------- | ------------------------------------------- |
+| GitHub Actions | docker   | [![GitHub-Actions-Img]][GitHub-Actions-Url] |
+
 # Run
 
 http://localhost:9001
@@ -20,3 +26,8 @@ https://hub.docker.com/r/lnhcode/git.web
 
 # Reference
 https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain
+
+
+
+[GitHub-Actions-Img]:https://github.com/linianhui/git.web/workflows/test/badge.svg
+[GitHub-Actions-Url]:https://github.com/linianhui/git.web/actions
