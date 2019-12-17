@@ -1,7 +1,7 @@
 [string]$SCRIPT = '0-build/build.cake'
-[string]$CAKE_ARGS = "--verbosity=diagnostic"
+[string]$CAKE_ARGS = "--verbosity=verbose"
 
-dotnet --info
+dotnet --list-sdks
 
 dotnet tool restore
 
