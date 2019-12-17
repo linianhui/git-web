@@ -40,67 +40,67 @@ namespace Git.Web.Apis.Links
 
         public Link GetConfiguration()
         {
-            return GetLink(Rels.REPOSITORY_CONFIG_GET, new {repository_name });
+            return GetLink(Rels.REPOSITORY_CONFIG_GET, new { repository_name });
         }
 
         public Link GetTags()
         {
-            return GetLink(Rels.REPOSITORY_TAG_GET_LIST, new {repository_name });
+            return GetLink(Rels.REPOSITORY_TAG_GET_LIST, new { repository_name });
         }
 
         public Link GetTagByName(string tag_name)
         {
-            return GetLink(Rels.REPOSITORY_TAG_GET_BY_NAME, new {repository_name, tag_name });
+            return GetLink(Rels.REPOSITORY_TAG_GET_BY_NAME, new { repository_name, tag_name });
         }
 
         public Link GetHead()
         {
-            return GetLink(Rels.REPOSITORY_HEAD_GET, new {repository_name });
+            return GetLink(Rels.REPOSITORY_HEAD_GET, new { repository_name });
         }
 
         public Link GetRemotes()
         {
-            return GetLink(Rels.REPOSITORY_REMOTE_GET_LIST, new {repository_name });
+            return GetLink(Rels.REPOSITORY_REMOTE_GET_LIST, new { repository_name });
         }
 
         public Link GetRemoteByName(string remote_name)
         {
-            return GetLink(Rels.REPOSITORY_REMOTE_GET_BY_NAME, new {repository_name, remote_name });
+            return GetLink(Rels.REPOSITORY_REMOTE_GET_BY_NAME, new { repository_name, remote_name });
         }
 
         public Link GetBranches()
         {
-            return GetLink(Rels.REPOSITORY_BRANCH_GET_LIST, new {repository_name });
+            return GetLink(Rels.REPOSITORY_BRANCH_GET_LIST, new { repository_name });
         }
 
         public Link GetBranchByName(string branch_name)
         {
-            return GetLink(Rels.REPOSITORY_BRANCH_GET_BY_NAME, new {repository_name, branch_name });
+            return GetLink(Rels.REPOSITORY_BRANCH_GET_BY_NAME, new { repository_name, branch_name });
         }
 
         public Link GetCommitsByBranchName(string branch_name)
         {
-            return GetLink(Rels.REPOSITORY_COMMIT_GET_LIST_BY_BRANCH_NAME, new {repository_name, branch_name });
+            return GetLink(Rels.REPOSITORY_COMMIT_GET_LIST_BY_BRANCH_NAME, new { repository_name, branch_name });
         }
 
         public Link GetCommits()
         {
-            return GetLink(Rels.REPOSITORY_COMMIT_GET_LIST, new {repository_name });
+            return GetLink(Rels.REPOSITORY_COMMIT_GET_LIST, new { repository_name });
         }
 
         public Link GetCommitById(string commit_id)
         {
-            return GetLink(Rels.REPOSITORY_COMMIT_GET_BY_ID, new {repository_name, commit_id });
+            return GetLink(Rels.REPOSITORY_COMMIT_GET_BY_ID, new { repository_name, commit_id });
         }
 
         public Link GetTreeById(string tree_id)
         {
-            return GetLink(Rels.REPOSITORY_TREE_GET_BY_ID, new {repository_name, tree_id });
+            return GetLink(Rels.REPOSITORY_TREE_GET_BY_ID, new { repository_name, tree_id });
         }
 
         public Link GetBlobById(string blob_id)
         {
-            return GetLink(Rels.REPOSITORY_BLOB_GET_BY_ID, new {repository_name, blob_id });
+            return GetLink(Rels.REPOSITORY_BLOB_GET_BY_ID, new { repository_name, blob_id });
         }
 
         private Link GetLink(string rel, object values = null)
