@@ -1,8 +1,12 @@
 #!/bin/sh
 
-set -x -e
+set -exo pipefail
 
 SCRIPT='0-build/build.cake'
+
+if command -v git >/dev/null 2>&1; then 
+  GIT_COMMIT_SHA=$(git rev-parse --short HEAD)
+fi
 
 dotnet --list-sdks
 
