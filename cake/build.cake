@@ -1,7 +1,7 @@
 var target       = Argument("target", "default");
 
 var rootPath     = "../";
-var srcPath      = rootPath + "1-src/";
+var srcPath      = rootPath + "src/";
 
 var solution     = rootPath + "git.web.sln";
 var srcProjects  = GetFiles(srcPath + "**/*.csproj");

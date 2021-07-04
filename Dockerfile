@@ -6,7 +6,7 @@ COPY . /build
 
 WORKDIR /build
 
-RUN dotnet publish /build/1-src/git.web/git.web.csproj --output /publish
+RUN dotnet publish /build/src/git.web/git.web.csproj --output /publish
 
 
 

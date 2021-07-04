@@ -1,4 +1,4 @@
-[string]$SCRIPT = '0-build/build.cake'
+[string]$SCRIPT = 'cake/build.cake'
 [string]$CAKE_ARGS = "--verbosity=verbose"
 
 dotnet --list-sdks
