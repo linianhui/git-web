@@ -13,17 +13,25 @@ namespace Microsoft.AspNetCore.Builder
         /// 启用API文档和文档UI
         /// </summary>
         /// <param name="this"></param>
-        /// <param name="routePrefix">路由前缀</param>
-        public static void UseApiDocs(this IApplicationBuilder @this, string routePrefix)
+        /// <param name="routePrefixSwaggerUI">路由前缀SwaggerUI</param>
+        /// <param name="routePrefixReDoc">路由前缀ReDoc</param>
+        public static void UseApiDocs(this IApplicationBuilder @this, string routePrefixSwaggerUI, string routePrefixReDoc)
         {
+            var apiSchemePath = "/.api-scheme.json";
             @this.UseSwagger(_ =>
             {
-                _.RouteTemplate = routePrefix + "/{documentName}-scheme.json";
+                _.RouteTemplate = ".{documentName}-scheme.json";
+            });
+
+            @this.UseReDoc(_ =>
+            {
+                _.RoutePrefix = routePrefixReDoc;
+                _.SpecUrl = apiSchemePath;
             });
 
             @this.UseSwaggerUI(_ =>
             {
-                _.RoutePrefix = routePrefix;
+                _.RoutePrefix = routePrefixSwaggerUI;
                 _.DefaultModelRendering(ModelRendering.Example);
                 _.DefaultModelExpandDepth(3);
                 _.DefaultModelsExpandDepth(3);
@@ -31,7 +39,7 @@ namespace Microsoft.AspNetCore.Builder
                 _.DocExpansion(DocExpansion.List);
                 _.EnableDeepLinking();
                 _.ShowExtensions();
-                _.SwaggerEndpoint($"/{routePrefix}/api-scheme.json", "API Docs");
+                _.SwaggerEndpoint(apiSchemePath, "API Docs");
             });
         }
     }

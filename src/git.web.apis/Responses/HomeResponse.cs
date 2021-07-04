@@ -15,7 +15,8 @@ namespace Git.Web.Apis.Responses
         public override HomeResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetHome());
-            AddLink(linkProvider.GetDocs(".docs"));
+            AddLink(linkProvider.GetSwagger(".swagger"));
+            AddLink(linkProvider.GetRedoc(".redoc"));
             foreach (var repositoryName in _repositoryNames)
             {
                 AddLink(linkProvider.GetRepository(repositoryName));

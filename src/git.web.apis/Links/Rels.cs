@@ -4,7 +4,9 @@ namespace Git.Web.Apis.Links
     {
         public const string HOME_GET = "home.get";
 
-        public const string DOCS_GET = "docs.get";
+        public const string SWAGGER_GET = "swagger.get";
+
+        public const string REDOC_GET = "redocs.get";
 
         public const string REPOSITORY_GET = "repository.get";
 
