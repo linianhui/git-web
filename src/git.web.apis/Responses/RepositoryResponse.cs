@@ -7,7 +7,8 @@ namespace Git.Web.Apis.Responses
         public override RepositoryResponse WithLinks(ILinkProvider linkProvider)
         {
             AddSelf(linkProvider.GetHome());
-            AddLink(linkProvider.GetDocs(".docs"));
+            AddLink(linkProvider.GetSwagger(".swagger"));
+            AddLink(linkProvider.GetRedoc(".redoc"));
             AddLink(linkProvider.GetConfiguration());
             AddLink(linkProvider.GetBranches());
             AddLink(linkProvider.GetTags());

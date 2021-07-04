@@ -4,7 +4,9 @@ namespace Git.Web.Apis.Links
     {
         Link GetHome();
 
-        Link GetDocs(string docsPath);
+        Link GetSwagger(string docsPath);
+
+        Link GetRedoc(string docsPath);
 
         Link GetRepository();
 

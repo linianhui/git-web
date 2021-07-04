@@ -18,7 +18,7 @@ namespace Git.Web
         public void Configure(IApplicationBuilder app, IRepositoryFactory repositoryFactory)
         {
             app.UseDeveloperExceptionPage();
-            app.UseApiDocs(".docs");
+            app.UseApiDocs(".swagger", ".redoc");
             app.UseMvc();
             repositoryFactory.Reload();
         }

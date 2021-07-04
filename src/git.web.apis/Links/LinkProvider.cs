@@ -18,9 +18,14 @@ namespace Git.Web.Apis.Links
             return GetLink(Rels.HOME_GET);
         }
 
-        public Link GetDocs(string docsPath)
+        public Link GetSwagger(string docsPath)
         {
-            return Link.From(Rels.DOCS_GET, GetHome().herf + docsPath);
+            return Link.From(Rels.SWAGGER_GET, GetHome().herf + docsPath);
+        }
+
+        public Link GetRedoc(string docsPath)
+        {
+            return Link.From(Rels.REDOC_GET, GetHome().herf + docsPath);
         }
 
         public Link GetRepository()
