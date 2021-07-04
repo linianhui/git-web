@@ -2,7 +2,7 @@
 
 set -ex
 
-SCRIPT='0-build/build.cake'
+SCRIPT='cake/build.cake'
 
 if command -v git >/dev/null 2>&1; then 
   GIT_COMMIT_SHA=$(git rev-parse --short HEAD)
