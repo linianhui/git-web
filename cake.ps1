@@ -5,7 +5,7 @@ dotnet --list-sdks
 
 dotnet tool restore
 
-dotnet format --check --dry-run --verbosity minimal
+dotnet format --check --verbosity minimal
 
 Write-Host "dotnet cake $SCRIPT $CAKE_ARGS $ARGS" -ForegroundColor GREEN
 
